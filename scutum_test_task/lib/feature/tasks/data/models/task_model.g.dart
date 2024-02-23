@@ -17,7 +17,7 @@ class TaskAdapter extends TypeAdapter<TaskModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TaskModel(
-      id: fields[0] as int,
+      id: fields[0] as String,
       title: fields[1] as String,
       description: fields[2] as String,
       category: fields[3] as TaskCategory,
@@ -58,7 +58,7 @@ class TaskAdapter extends TypeAdapter<TaskModel> {
 
 _$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
     _$TaskModelImpl(
-      id: json['id'] as int,
+      id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
       category: $enumDecode(_$TaskCategoryEnumMap, json['category']),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:scutum_test_task/feature/tasks/presentation/tasks_page.dart';
 import 'package:scutum_test_task/navigation/bottom_navigation_bar.dart';
 
 import 'router_paths.dart';
@@ -12,7 +13,7 @@ class GoRouterNavigation {
   GoRouter initGoRoute() {
     return GoRouter(
       debugLogDiagnostics: true,
-      initialLocation: RoutePaths.home,
+      initialLocation: RoutePaths.tasks,
       navigatorKey: _rootNavigatorKey,
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
@@ -25,25 +26,11 @@ class GoRouterNavigation {
               navigatorKey: _tasksKey,
               routes: [
                 GoRoute(
-                  path: RoutePaths.home,
-                  name: RoutePaths.home,
+                  path: RoutePaths.tasks,
+                  name: RoutePaths.tasks,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                    // child: HomePage(),
-                    child: SizedBox.shrink(),
+                    child: TasksPage(),
                   ),
-                  routes: <RouteBase>[
-                    GoRoute(
-                      path: RoutePaths.artistInfo,
-                      name: RoutePaths.artistInfo,
-                      builder: (context, state) {
-                        final artistExtra = state.extra;
-                        // if (artistExtra is ArtistBaseInfoEntity) {
-                        //   return ArtistInfoPage(artist: artistExtra);
-                        // }
-                        return const SizedBox.shrink();
-                      },
-                    ),
-                  ],
                 ),
               ],
             ),
@@ -54,19 +41,8 @@ class GoRouterNavigation {
                   path: RoutePaths.favourite,
                   name: RoutePaths.favourite,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                    // child: FavouritePage(),
-                    child: SizedBox.shrink(),
+                    child: Placeholder(),
                   ),
-                  routes: <RouteBase>[
-                    GoRoute(
-                      path: RoutePaths.favouriteInfo,
-                      name: RoutePaths.favouriteInfo,
-                      pageBuilder: (context, state) => const NoTransitionPage(
-                        // child: FavouriteInfoPage(),
-                        child: SizedBox.shrink(),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

@@ -21,13 +21,15 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TaskModel {
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @HiveField(1)
   String get title => throw _privateConstructorUsedError;
   @HiveField(2)
   String get description => throw _privateConstructorUsedError;
+  @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
   @HiveField(3)
   TaskCategory get category => throw _privateConstructorUsedError;
+  @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
   @HiveField(4)
   Status get status => throw _privateConstructorUsedError;
 
@@ -43,11 +45,15 @@ abstract class $TaskModelCopyWith<$Res> {
       _$TaskModelCopyWithImpl<$Res, TaskModel>;
   @useResult
   $Res call(
-      {@HiveField(0) int id,
+      {@HiveField(0) String id,
       @HiveField(1) String title,
       @HiveField(2) String description,
-      @HiveField(3) TaskCategory category,
-      @HiveField(4) Status status});
+      @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
+      @HiveField(3)
+      TaskCategory category,
+      @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
+      @HiveField(4)
+      Status status});
 }
 
 /// @nodoc
@@ -73,7 +79,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -103,11 +109,15 @@ abstract class _$$TaskModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int id,
+      {@HiveField(0) String id,
       @HiveField(1) String title,
       @HiveField(2) String description,
-      @HiveField(3) TaskCategory category,
-      @HiveField(4) Status status});
+      @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
+      @HiveField(3)
+      TaskCategory category,
+      @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
+      @HiveField(4)
+      Status status});
 }
 
 /// @nodoc
@@ -131,7 +141,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -154,20 +164,25 @@ class __$$TaskModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TaskModelImpl implements _TaskModel {
-  const _$TaskModelImpl(
+class _$TaskModelImpl extends _TaskModel {
+  _$TaskModelImpl(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.title,
       @HiveField(2) required this.description,
-      @HiveField(3) required this.category,
-      @HiveField(4) required this.status});
+      @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
+      @HiveField(3)
+      required this.category,
+      @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
+      @HiveField(4)
+      required this.status})
+      : super._();
 
   factory _$TaskModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskModelImplFromJson(json);
 
   @override
   @HiveField(0)
-  final int id;
+  final String id;
   @override
   @HiveField(1)
   final String title;
@@ -175,9 +190,11 @@ class _$TaskModelImpl implements _TaskModel {
   @HiveField(2)
   final String description;
   @override
+  @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
   @HiveField(3)
   final TaskCategory category;
   @override
+  @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
   @HiveField(4)
   final Status status;
 
@@ -219,20 +236,25 @@ class _$TaskModelImpl implements _TaskModel {
   }
 }
 
-abstract class _TaskModel implements TaskModel {
-  const factory _TaskModel(
-      {@HiveField(0) required final int id,
+abstract class _TaskModel extends TaskModel {
+  factory _TaskModel(
+      {@HiveField(0) required final String id,
       @HiveField(1) required final String title,
       @HiveField(2) required final String description,
-      @HiveField(3) required final TaskCategory category,
-      @HiveField(4) required final Status status}) = _$TaskModelImpl;
+      @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
+      @HiveField(3)
+      required final TaskCategory category,
+      @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
+      @HiveField(4)
+      required final Status status}) = _$TaskModelImpl;
+  _TaskModel._() : super._();
 
   factory _TaskModel.fromJson(Map<String, dynamic> json) =
       _$TaskModelImpl.fromJson;
 
   @override
   @HiveField(0)
-  int get id;
+  String get id;
   @override
   @HiveField(1)
   String get title;
@@ -240,9 +262,11 @@ abstract class _TaskModel implements TaskModel {
   @HiveField(2)
   String get description;
   @override
+  @HiveType(typeId: 1, adapterName: HiveData.taskAdapter)
   @HiveField(3)
   TaskCategory get category;
   @override
+  @HiveType(typeId: 2, adapterName: HiveData.statusAdapter)
   @HiveField(4)
   Status get status;
   @override

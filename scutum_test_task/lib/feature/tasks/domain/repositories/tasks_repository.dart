@@ -2,11 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:scutum_test_task/feature/tasks/domain/entities/task_entity.dart';
 
 abstract class TasksRepository {
-  ValueListenable<TaskEntity>? fetchAll();
+  ValueListenable<List<TaskEntity>>? fetchAll();
 
-  Future<void> insert(TaskEntity track);
+  Future<void> insert(TaskEntity task);
 
-  Future<void> delete(int index);
+  // Future<void> update(TaskEntity task);
+  Future<void> updateTaskById(String id, TaskEntity updatedTask);
 
-  Future<void> update();
+  Future<void> delete(String id);
 }

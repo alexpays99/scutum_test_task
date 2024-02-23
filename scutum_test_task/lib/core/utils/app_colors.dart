@@ -5,6 +5,7 @@ class AppColors {
 
   static const white = Colors.white;
   static const black = Colors.black;
+  static const taskItem = Color.fromARGB(189, 195, 126, 254);
 
   static const primaryColor = Color(0xFFEB6C42);
   static const primaryLightColor = Color(0xFFEAAE59);
