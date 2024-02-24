@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/task_entity.dart';
 
-class CategoryButton extends StatelessWidget {
-  const CategoryButton({
+class StatusButton extends StatelessWidget {
+  const StatusButton({
     super.key,
-    required this.category,
-    required this.selectedCategory,
+    required this.status,
+    required this.selectedStatus,
     required this.onTap,
   });
 
-  final TaskCategory category;
-  final TaskCategory selectedCategory;
+  final Status status;
+  final Status selectedStatus;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final String categoryName = category.stringValue;
-    final bool isSelected = selectedCategory == category;
+    final String statusName = status.stringValue;
+    final bool isSelected = selectedStatus == status;
 
     return GestureDetector(
       onTap: onTap,
@@ -30,7 +30,7 @@ class CategoryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Text(
-          categoryName,
+          statusName,
           style: TextStyle(
             color: isSelected ? Colors.white : Colors.black,
           ),

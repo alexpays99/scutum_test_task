@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scutum_test_task/core/injector.dart';
 import 'package:scutum_test_task/feature/tasks/domain/entities/task_entity.dart';
+import 'package:scutum_test_task/feature/tasks/presentation/widgets/status_button.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/widgets/task_item.dart';
 
 import '../../../core/utils/app_strings.dart';
@@ -22,6 +23,7 @@ class _TasksPageState extends State<TasksPage> {
   final TextEditingController _descriptionController = TextEditingController();
   final bloc = getIt.get<TasksBloc>();
   TaskCategory _selectedCategory = TaskCategory.home;
+  Status _selectedStatus = Status.inProgress;
 
   @override
   void initState() {
@@ -173,37 +175,73 @@ class _TasksPageState extends State<TasksPage> {
       body: Padding(
         padding: const EdgeInsets.only(left: 24.0, right: 24.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                const Text(
+                  'Category',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                const Spacer(),
                 CategoryButton(
                   category: TaskCategory.home,
                   selectedCategory: _selectedCategory,
-                  onTap: () {
-                    setState(() {
-                      _selectedCategory = TaskCategory.home;
-                    });
-                  },
+                  onTap: () => setState(() {
+                    _selectedCategory = TaskCategory.home;
+                  }),
                 ),
+                const SizedBox(width: 4),
                 CategoryButton(
                   category: TaskCategory.work,
                   selectedCategory: _selectedCategory,
-                  onTap: () {
-                    setState(() {
-                      _selectedCategory = TaskCategory.work;
-                    });
-                  },
+                  onTap: () => setState(() {
+                    _selectedCategory = TaskCategory.work;
+                  }),
                 ),
+                const SizedBox(width: 4),
                 CategoryButton(
                   category: TaskCategory.study,
                   selectedCategory: _selectedCategory,
-                  onTap: () {
-                    setState(() {
-                      _selectedCategory = TaskCategory.study;
-                    });
-                  },
+                  onTap: () => setState(() {
+                    _selectedCategory = TaskCategory.study;
+                  }),
                 ),
+                const Spacer(),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  'Status',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                const Spacer(),
+                StatusButton(
+                  status: Status.inProgress,
+                  selectedStatus: _selectedStatus,
+                  onTap: () => setState(() {
+                    _selectedStatus = Status.inProgress;
+                  }),
+                ),
+                const SizedBox(width: 4),
+                StatusButton(
+                  status: Status.done,
+                  selectedStatus: _selectedStatus,
+                  onTap: () => setState(() {
+                    _selectedStatus = Status.done;
+                  }),
+                ),
+                const Spacer(),
               ],
             ),
             const SizedBox(height: 24),
@@ -223,13 +261,6 @@ class _TasksPageState extends State<TasksPage> {
                   return ValueListenableBuilder<List<TaskEntity>>(
                     valueListenable: state.taskListenable!,
                     builder: (context, tasks, child) {
-                      if (state.failure != null) {
-                        Center(
-                          child: Text(
-                            "${state.failure?.name}\n${state.failure?.description}",
-                          ),
-                        );
-                      }
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: tasks.length,
