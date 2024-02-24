@@ -65,6 +65,68 @@ class _TasksPageState extends State<TasksPage> {
     );
   }
 
+  Widget _buildCategoryRow() {
+    return _buildRow(
+      label: 'Category',
+      buttons: TaskCategory.values.map((category) {
+        return CategoryButton(
+          category: category,
+          selectedCategory: _selectedCategory,
+          onTap: () => _onCategoryButtonTapped(category),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildStatusRow() {
+    return _buildRow(
+      label: 'Status',
+      buttons: Status.values.map((status) {
+        return StatusButton(
+          status: status,
+          selectedStatus: _selectedStatus,
+          onTap: () => _onStatusButtonTapped(status),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildRow({required String label, required List<Widget> buttons}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+        const Spacer(),
+        ...buttons,
+        const Spacer(),
+      ],
+    );
+  }
+
+  void _onCategoryButtonTapped(TaskCategory category) {
+    setState(() {
+      _selectedCategory = category;
+      bloc.add(
+        category == TaskCategory.all
+            ? const TasksEvent.fetchAllTasksFromDb()
+            : TasksEvent.filterTasksByCategory(category),
+      );
+    });
+  }
+
+  void _onStatusButtonTapped(Status status) {
+    setState(() {
+      _selectedStatus = status;
+      bloc.add(TasksEvent.filterTasksByStatus(status));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,90 +144,9 @@ class _TasksPageState extends State<TasksPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Category',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  const Spacer(),
-                  CategoryButton(
-                    category: TaskCategory.all,
-                    selectedCategory: _selectedCategory,
-                    onTap: () => setState(() {
-                      _selectedCategory = TaskCategory.all;
-                      bloc.add(const TasksEvent.fetchAllTasksFromDb());
-                    }),
-                  ),
-                  const SizedBox(width: 4),
-                  CategoryButton(
-                    category: TaskCategory.home,
-                    selectedCategory: _selectedCategory,
-                    onTap: () => setState(() {
-                      _selectedCategory = TaskCategory.home;
-                      bloc.add(
-                          TasksEvent.filterTasksByCategory(_selectedCategory));
-                    }),
-                  ),
-                  const SizedBox(width: 4),
-                  CategoryButton(
-                    category: TaskCategory.work,
-                    selectedCategory: _selectedCategory,
-                    onTap: () => setState(() {
-                      _selectedCategory = TaskCategory.work;
-                      bloc.add(
-                          TasksEvent.filterTasksByCategory(_selectedCategory));
-                    }),
-                  ),
-                  const SizedBox(width: 4),
-                  CategoryButton(
-                    category: TaskCategory.study,
-                    selectedCategory: _selectedCategory,
-                    onTap: () => setState(() {
-                      _selectedCategory = TaskCategory.study;
-                      bloc.add(
-                          TasksEvent.filterTasksByCategory(_selectedCategory));
-                    }),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+              _buildCategoryRow(),
               const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Status',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  const Spacer(),
-                  StatusButton(
-                    status: Status.inProgress,
-                    selectedStatus: _selectedStatus,
-                    onTap: () => setState(() {
-                      _selectedStatus = Status.inProgress;
-                      bloc.add(TasksEvent.filterTasksByStatus(_selectedStatus));
-                    }),
-                  ),
-                  const SizedBox(width: 4),
-                  StatusButton(
-                    status: Status.done,
-                    selectedStatus: _selectedStatus,
-                    onTap: () => setState(() {
-                      _selectedStatus = Status.done;
-                      bloc.add(TasksEvent.filterTasksByStatus(_selectedStatus));
-                    }),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+              _buildStatusRow(),
               const SizedBox(height: 24),
               BlocConsumer<TasksBloc, TasksState>(
                 listener: (context, state) {
