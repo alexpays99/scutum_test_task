@@ -60,7 +60,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               ),
               child: const Icon(Icons.home),
             ),
-            label: "home",
+            label: "Tasks",
           ),
           BottomNavigationBarItem(
             icon: const SizedBox(
@@ -79,7 +79,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               ),
               child: const Icon(Icons.favorite),
             ),
-            label: "favourite",
+            label: "Weather",
           ),
         ],
       ),

@@ -29,6 +29,15 @@ class TaskItem extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: ListTile(
+        leading: IconButton(
+          onPressed: () {
+            onSetStatus();
+          },
+          icon: Icon(status == Status.done
+              ? Icons.check_circle_outline_rounded
+              : Icons.circle_outlined),
+          color: status == Status.done ? AppColors.green : AppColors.inProcress,
+        ),
         title: Text(
           task.title ?? '',
           style: const TextStyle(
@@ -37,7 +46,7 @@ class TaskItem extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          task.category?.stringValue ?? '',
+          task.description ?? '',
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
@@ -47,8 +56,6 @@ class TaskItem extends StatelessWidget {
           onSelected: (String value) {
             if (value == 'delete') {
               onDelete();
-            } else if (value == 'setStatus') {
-              onSetStatus();
             } else if (value == 'edit') {
               onUpdate();
             }
@@ -57,10 +64,6 @@ class TaskItem extends StatelessWidget {
             const PopupMenuItem<String>(
               value: 'delete',
               child: Text('Delete'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'setStatus',
-              child: Text('Set Status'),
             ),
             const PopupMenuItem<String>(
               value: 'edit',

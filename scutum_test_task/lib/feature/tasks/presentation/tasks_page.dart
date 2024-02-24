@@ -21,23 +21,15 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
   final bloc = getIt.get<TasksBloc>();
   TaskCategory _selectedCategory = TaskCategory.home;
   Status _selectedStatus = Status.inProgress;
+  bool _isSelectd = false;
 
   @override
   void initState() {
     bloc.add(const TasksEvent.fetchAllTasksFromDb());
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _descriptionController.dispose();
-    super.dispose();
   }
 
   _showDeleteDialog(
@@ -106,6 +98,8 @@ class _TasksPageState extends State<TasksPage> {
                     selectedCategory: _selectedCategory,
                     onTap: () => setState(() {
                       _selectedCategory = TaskCategory.home;
+                      bloc.add(
+                          TasksEvent.filterTasksByCategory(_selectedCategory));
                     }),
                   ),
                   const SizedBox(width: 4),
@@ -114,6 +108,8 @@ class _TasksPageState extends State<TasksPage> {
                     selectedCategory: _selectedCategory,
                     onTap: () => setState(() {
                       _selectedCategory = TaskCategory.work;
+                      bloc.add(
+                          TasksEvent.filterTasksByCategory(_selectedCategory));
                     }),
                   ),
                   const SizedBox(width: 4),
@@ -122,6 +118,8 @@ class _TasksPageState extends State<TasksPage> {
                     selectedCategory: _selectedCategory,
                     onTap: () => setState(() {
                       _selectedCategory = TaskCategory.study;
+                      bloc.add(
+                          TasksEvent.filterTasksByCategory(_selectedCategory));
                     }),
                   ),
                   const Spacer(),
@@ -144,6 +142,7 @@ class _TasksPageState extends State<TasksPage> {
                     selectedStatus: _selectedStatus,
                     onTap: () => setState(() {
                       _selectedStatus = Status.inProgress;
+                      bloc.add(TasksEvent.filterTasksByStatus(_selectedStatus));
                     }),
                   ),
                   const SizedBox(width: 4),
@@ -152,6 +151,7 @@ class _TasksPageState extends State<TasksPage> {
                     selectedStatus: _selectedStatus,
                     onTap: () => setState(() {
                       _selectedStatus = Status.done;
+                      bloc.add(TasksEvent.filterTasksByStatus(_selectedStatus));
                     }),
                   ),
                   const Spacer(),
@@ -190,6 +190,11 @@ class _TasksPageState extends State<TasksPage> {
                                       '', tasks[index].id!);
                                 },
                                 onSetStatus: () {
+                                  setState(() {
+                                    // _isSelectd = !_isSelectd;
+                                    bloc.add(TasksEvent.updateTask(
+                                        tasks[index].id ?? '', tasks[index]));
+                                  });
                                   //show set status dialog
                                 },
                                 onUpdate: () {

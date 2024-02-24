@@ -11,5 +11,9 @@ class TasksEvent with _$TasksEvent {
       _InputDescription;
   const factory TasksEvent.inputCategory(TaskCategory category) =
       _InputCategory;
+  const factory TasksEvent.filterTasksByCategory(
+      TaskCategory selectedCategory) = _FilterTasksByCategory;
+  const factory TasksEvent.filterTasksByStatus(Status selectedStatus) =
+      _FilterTasksByStatus;
   const factory TasksEvent.resetState() = _ResetState;
 }

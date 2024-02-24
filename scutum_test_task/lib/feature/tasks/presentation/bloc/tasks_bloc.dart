@@ -21,9 +21,10 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final InsertTaskUseCase insertTaskUseCase;
   final UpdateTaskUseCase updateTaskUseCase;
   final DeleteTaskUseCase deleteTaskUseCase;
+  TaskCategory category = TaskCategory.home;
   String title = '';
   String description = '';
-  TaskCategory category = TaskCategory.home;
+  List<TaskEntity> _allTasks = [];
 
   TasksBloc({
     required this.fetchAllTasksFromDb,
@@ -33,82 +34,98 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   }) : super(const TasksState()) {
     on<TasksEvent>((event, emit) async {
       await event.when(
-          fetchAllTasksFromDb: () async {
-            final fetch =
-                await fetchAllTasksFromDb.call(NoParams(), NoParams());
+        fetchAllTasksFromDb: () async {
+          final fetch = await fetchAllTasksFromDb.call(NoParams(), NoParams());
 
-            Log.instance.d(fetch);
-            return fetch.fold(
-              (l) => emit(state.copyWith(failure: l)),
-              (r) => emit(state.copyWith(taskListenable: r)),
-            );
-          },
-          insertTask: (task) async {
-            final taskWithId = TaskEntity(
-              id: const Uuid().v4(),
-              title: title,
-              description: description,
-              category: category,
-              status: Status.inProgress,
-            );
-            final insert = await insertTaskUseCase.call(taskWithId, NoParams());
-
-            Log.instance.d(insert);
-            return insert.fold(
-              (l) => emit(state.copyWith(failure: l)),
-              (r) async {
-                final fetch =
-                    await fetchAllTasksFromDb.call(NoParams(), NoParams());
-                return fetch.fold(
-                  (l) => emit(state.copyWith(failure: l)),
-                  (updatedTaskList) =>
-                      emit(state.copyWith(taskListenable: updatedTaskList)),
-                );
-              },
-            );
-          },
-          updateTask: (id, task) async {
-            final update = await updateTaskUseCase.call(id, task);
-
-            Log.instance.d(update);
-            return update.fold(
-              (l) => emit(state.copyWith(failure: l)),
-              (r) async {
-                final fetch =
-                    await fetchAllTasksFromDb.call(NoParams(), NoParams());
-                return fetch.fold(
-                  (l) => emit(state.copyWith(failure: l)),
-                  (updatedTaskList) =>
-                      emit(state.copyWith(taskListenable: updatedTaskList)),
-                );
-              },
-            );
-          },
-          deleteTask: (id) async {
-            final delete = await deleteTaskUseCase.call(id, NoParams());
-
-            Log.instance.d(delete);
-            return delete.fold(
-              (l) => emit(state.copyWith(failure: l)),
-              (r) async {
-                final fetch =
-                    await fetchAllTasksFromDb.call(NoParams(), NoParams());
-                return fetch.fold(
-                  (l) => emit(state.copyWith(failure: l)),
-                  (updatedTaskList) =>
-                      emit(state.copyWith(taskListenable: updatedTaskList)),
-                );
-              },
-            );
-          },
-          inputTitle: (String t) async => title = t,
-          inputDescription: (String d) async => description = d,
-          inputCategory: (TaskCategory c) async => category = c,
-          resetState: () {
-            title = '';
-            description = '';
-            category = TaskCategory.home;
+          Log.instance.d(fetch);
+          return fetch.fold((l) => emit(state.copyWith(failure: l)), (r) {
+            _allTasks = r?.value.map((e) => e).toList() ?? [];
+            emit(state.copyWith(taskListenable: r));
           });
+        },
+        insertTask: (task) async {
+          final taskWithId = TaskEntity(
+            id: const Uuid().v4(),
+            title: title,
+            description: description,
+            category: category,
+            status: Status.inProgress,
+          );
+          final insert = await insertTaskUseCase.call(taskWithId, NoParams());
+
+          Log.instance.d(insert);
+          return insert.fold(
+            (l) => emit(state.copyWith(failure: l)),
+            (r) async {
+              final fetch =
+                  await fetchAllTasksFromDb.call(NoParams(), NoParams());
+              return fetch.fold(
+                (l) => emit(state.copyWith(failure: l)),
+                (updatedTaskList) =>
+                    emit(state.copyWith(taskListenable: updatedTaskList)),
+              );
+            },
+          );
+        },
+        updateTask: (id, task) async {
+          final update = await updateTaskUseCase.call(id, task);
+
+          Log.instance.d(update);
+          return update.fold(
+            (l) => emit(state.copyWith(failure: l)),
+            (r) async {
+              final fetch =
+                  await fetchAllTasksFromDb.call(NoParams(), NoParams());
+              return fetch.fold(
+                (l) => emit(state.copyWith(failure: l)),
+                (updatedTaskList) =>
+                    emit(state.copyWith(taskListenable: updatedTaskList)),
+              );
+            },
+          );
+        },
+        deleteTask: (id) async {
+          final delete = await deleteTaskUseCase.call(id, NoParams());
+
+          Log.instance.d(delete);
+          return delete.fold(
+            (l) => emit(state.copyWith(failure: l)),
+            (r) async {
+              final fetch =
+                  await fetchAllTasksFromDb.call(NoParams(), NoParams());
+              return fetch.fold(
+                (l) => emit(state.copyWith(failure: l)),
+                (updatedTaskList) =>
+                    emit(state.copyWith(taskListenable: updatedTaskList)),
+              );
+            },
+          );
+        },
+        filterTasksByCategory: (selectedCategory) {
+          if (state.taskListenable?.value != null) {
+            final filteredTasks = (_allTasks
+                .where((task) => task.category == selectedCategory)
+                .toList());
+            emit(state.copyWith(taskListenable: ValueNotifier(filteredTasks)));
+          }
+        },
+        filterTasksByStatus: (selectedStatus) {
+          if (state.taskListenable?.value != null) {
+            final filteredTasks = (_allTasks
+                .where((task) => task.status == selectedStatus)
+                .toList());
+            emit(state.copyWith(taskListenable: ValueNotifier(filteredTasks)));
+          }
+        },
+        inputTitle: (String t) async => title = t,
+        inputDescription: (String d) async => description = d,
+        inputCategory: (TaskCategory c) async => category = c,
+        resetState: () {
+          title = '';
+          description = '';
+          category = TaskCategory.home;
+        },
+      );
     });
   }
 }
