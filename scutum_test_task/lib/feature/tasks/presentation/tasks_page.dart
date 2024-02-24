@@ -32,6 +32,87 @@ class _TasksPageState extends State<TasksPage> {
     super.initState();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(AppStrings.tasksTitle),
+        actions: [
+          CreateTaskButton(
+            onTap: () => _showCreateTaskDialog(context, 'Crate task'),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildCategoryRow(),
+              const SizedBox(height: 8),
+              _buildStatusRow(),
+              const SizedBox(height: 24),
+              BlocConsumer<TasksBloc, TasksState>(
+                listener: (context, state) {
+                  state.failure != null
+                      ? _showErrorDialog(
+                          context,
+                          state.failure!.name,
+                          state.failure!.description ?? '',
+                        )
+                      : const SizedBox.shrink();
+                },
+                buildWhen: (previous, current) => previous != current,
+                builder: (context, state) {
+                  if (state.taskListenable != null) {
+                    return ValueListenableBuilder<List<TaskEntity>>(
+                      valueListenable: state.taskListenable!,
+                      builder: (context, tasks, child) {
+                        return ListView.builder(
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: tasks.length,
+                          itemBuilder: (context, index) {
+                            final task = TaskModel.fromEntity(tasks[index]);
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: TaskItem(
+                                status: task.status,
+                                task: tasks[index],
+                                onSetStatus: () {
+                                  setState(() {
+                                    final updatedStatus =
+                                        task.status == Status.done
+                                            ? Status.inProgress
+                                            : Status.done;
+                                    final updatedTask =
+                                        task.copyWith(status: updatedStatus);
+                                    bloc.add(TasksEvent.updateTask(
+                                        task.id, updatedTask));
+                                  });
+                                },
+                                onDelete: () {
+                                  _showDeleteDialog(context, 'Are you sure?',
+                                      '', tasks[index].id!);
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   _showDeleteDialog(
       BuildContext context, String title, String message, String id) {
     showDialog(
@@ -125,86 +206,5 @@ class _TasksPageState extends State<TasksPage> {
       _selectedStatus = status;
       bloc.add(TasksEvent.filterTasksByStatus(status));
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.title),
-        actions: [
-          CreateTaskButton(
-            onTap: () => _showCreateTaskDialog(context, 'Crate task'),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildCategoryRow(),
-              const SizedBox(height: 8),
-              _buildStatusRow(),
-              const SizedBox(height: 24),
-              BlocConsumer<TasksBloc, TasksState>(
-                listener: (context, state) {
-                  state.failure != null
-                      ? _showErrorDialog(
-                          context,
-                          state.failure!.name,
-                          state.failure!.description ?? '',
-                        )
-                      : const SizedBox.shrink();
-                },
-                buildWhen: (previous, current) => previous != current,
-                builder: (context, state) {
-                  if (state.taskListenable != null) {
-                    return ValueListenableBuilder<List<TaskEntity>>(
-                      valueListenable: state.taskListenable!,
-                      builder: (context, tasks, child) {
-                        return ListView.builder(
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: tasks.length,
-                          itemBuilder: (context, index) {
-                            final task = TaskModel.fromEntity(tasks[index]);
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: TaskItem(
-                                status: task.status,
-                                task: tasks[index],
-                                onSetStatus: () {
-                                  setState(() {
-                                    final updatedStatus =
-                                        task.status == Status.done
-                                            ? Status.inProgress
-                                            : Status.done;
-                                    final updatedTask =
-                                        task.copyWith(status: updatedStatus);
-                                    bloc.add(TasksEvent.updateTask(
-                                        task.id, updatedTask));
-                                  });
-                                },
-                                onDelete: () {
-                                  _showDeleteDialog(context, 'Are you sure?',
-                                      '', tasks[index].id!);
-                                },
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

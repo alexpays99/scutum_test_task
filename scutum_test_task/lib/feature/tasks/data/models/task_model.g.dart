@@ -75,6 +75,7 @@ Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
     };
 
 const _$TaskCategoryEnumMap = {
+  TaskCategory.all: 'all',
   TaskCategory.home: 'home',
   TaskCategory.work: 'work',
   TaskCategory.study: 'study',

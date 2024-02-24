@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:scutum_test_task/feature/tasks/domain/entities/task_entity.dart';
 
 import '../../domain/repositories/tasks_repository.dart';
-import '../datasources/local_datasource.dart';
+import '../datasource/local_datasource.dart';
 import '../models/task_model.dart';
 
 class TasksRepositoryImpl implements TasksRepository {

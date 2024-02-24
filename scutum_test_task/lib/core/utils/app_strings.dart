@@ -1,6 +1,6 @@
 class AppStrings {
   const AppStrings._();
 
-  //Tasks
-  static const String title = 'Tasks';
+  static const String tasksTitle = 'Tasks';
+  static const String weatherTitle = 'Weather';
 }

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/tasks_page.dart';
 import 'package:scutum_test_task/navigation/bottom_navigation_bar.dart';
 
+import '../feature/weather/presentation/weather_page.dart';
 import 'router_paths.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -41,7 +42,7 @@ class GoRouterNavigation {
                   path: RoutePaths.favourite,
                   name: RoutePaths.favourite,
                   pageBuilder: (context, state) => const NoTransitionPage(
-                    child: Placeholder(),
+                    child: WeatherPage(),
                   ),
                 ),
               ],

@@ -1,4 +1,9 @@
 {
-    "BASE_URL": "https://api.deezer.com/",
-    "ARTIST":"artist/"
+    
+    "BASE_URL": "https://api.openweathermap.org/",
+    "BASE_ENDPOINT": "data/3.0/onecall?",
+    "LAT": "lat",
+    "LON": "lon",
+    "EXCLUDE": "exclude",
+    "APP_ID": "add4ce5f261e44a46f894c6f80d89fd5"
 }
