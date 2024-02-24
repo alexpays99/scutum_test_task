@@ -10,14 +10,12 @@ class TaskItem extends StatelessWidget {
     required this.status,
     required this.onDelete,
     required this.onSetStatus,
-    required this.onUpdate,
   });
 
   final TaskEntity task;
   final Status status;
   final void Function() onDelete;
   final void Function() onSetStatus;
-  final void Function() onUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,7 @@ class TaskItem extends StatelessWidget {
       ),
       child: ListTile(
         leading: IconButton(
-          onPressed: () {
-            onSetStatus();
-          },
+          onPressed: () => onSetStatus(),
           icon: Icon(status == Status.done
               ? Icons.check_circle_outline_rounded
               : Icons.circle_outlined),
@@ -56,18 +52,12 @@ class TaskItem extends StatelessWidget {
           onSelected: (String value) {
             if (value == 'delete') {
               onDelete();
-            } else if (value == 'edit') {
-              onUpdate();
             }
           },
           itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
             const PopupMenuItem<String>(
               value: 'delete',
               child: Text('Delete'),
-            ),
-            const PopupMenuItem<String>(
-              value: 'edit',
-              child: Text('Edit'),
             ),
           ],
           child: const Icon(Icons.more_vert),

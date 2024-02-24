@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scutum_test_task/core/injector.dart';
+import 'package:scutum_test_task/feature/tasks/data/models/task_model.dart';
 import 'package:scutum_test_task/feature/tasks/domain/entities/task_entity.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/widgets/status_button.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/widgets/task_item.dart';
@@ -22,9 +23,8 @@ class TasksPage extends StatefulWidget {
 
 class _TasksPageState extends State<TasksPage> {
   final bloc = getIt.get<TasksBloc>();
-  TaskCategory _selectedCategory = TaskCategory.home;
+  TaskCategory _selectedCategory = TaskCategory.all;
   Status _selectedStatus = Status.inProgress;
-  bool _isSelectd = false;
 
   @override
   void initState() {
@@ -93,6 +93,15 @@ class _TasksPageState extends State<TasksPage> {
                     ),
                   ),
                   const Spacer(),
+                  CategoryButton(
+                    category: TaskCategory.all,
+                    selectedCategory: _selectedCategory,
+                    onTap: () => setState(() {
+                      _selectedCategory = TaskCategory.all;
+                      bloc.add(const TasksEvent.fetchAllTasksFromDb());
+                    }),
+                  ),
+                  const SizedBox(width: 4),
                   CategoryButton(
                     category: TaskCategory.home,
                     selectedCategory: _selectedCategory,
@@ -179,26 +188,27 @@ class _TasksPageState extends State<TasksPage> {
                           shrinkWrap: true,
                           itemCount: tasks.length,
                           itemBuilder: (context, index) {
+                            final task = TaskModel.fromEntity(tasks[index]);
                             return Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),
                               child: TaskItem(
-                                status:
-                                    tasks[index].status ?? Status.inProgress,
+                                status: task.status,
                                 task: tasks[index],
+                                onSetStatus: () {
+                                  setState(() {
+                                    final updatedStatus =
+                                        task.status == Status.done
+                                            ? Status.inProgress
+                                            : Status.done;
+                                    final updatedTask =
+                                        task.copyWith(status: updatedStatus);
+                                    bloc.add(TasksEvent.updateTask(
+                                        task.id, updatedTask));
+                                  });
+                                },
                                 onDelete: () {
                                   _showDeleteDialog(context, 'Are you sure?',
                                       '', tasks[index].id!);
-                                },
-                                onSetStatus: () {
-                                  setState(() {
-                                    // _isSelectd = !_isSelectd;
-                                    bloc.add(TasksEvent.updateTask(
-                                        tasks[index].id ?? '', tasks[index]));
-                                  });
-                                  //show set status dialog
-                                },
-                                onUpdate: () {
-                                  // show update dialog
                                 },
                               ),
                             );

@@ -1,10 +1,13 @@
 enum TaskCategory {
+  all,
   home,
   work,
   study;
 
   String get stringValue {
     switch (this) {
+      case TaskCategory.all:
+        return 'all';
       case TaskCategory.home:
         return 'home';
       case TaskCategory.work:

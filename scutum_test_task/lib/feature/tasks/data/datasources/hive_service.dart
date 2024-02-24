@@ -34,7 +34,7 @@ class HiveService {
 
   Future<void> updateTaskById(String id, TaskModel updatedTask) async {
     try {
-      var box = await Hive.openBox<TaskModel>(HiveData.boxName);
+      var box = await Hive.openBox(HiveData.boxName);
       int index = await _findTaskIndexById(box, id);
       if (index != -1) {
         await box.putAt(index, updatedTask);
@@ -47,7 +47,7 @@ class HiveService {
     }
   }
 
-  Future<int> _findTaskIndexById(Box<TaskModel> box, String id) async {
+  Future<int> _findTaskIndexById(Box box, String id) async {
     for (int i = 0; i < box.length; i++) {
       if (box.getAt(i)?.id == id) {
         return i;
