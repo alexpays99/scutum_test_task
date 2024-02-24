@@ -7,6 +7,8 @@ import 'package:scutum_test_task/feature/tasks/presentation/widgets/task_item.da
 
 import '../../../core/utils/app_strings.dart';
 import 'bloc/tasks_bloc.dart';
+import 'widgets/category_button.dart';
+import 'widgets/create_task_button.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({super.key});
@@ -18,13 +20,12 @@ class TasksPage extends StatefulWidget {
 class _TasksPageState extends State<TasksPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  TaskCategory _selectedCategory = TaskCategory.home;
   final bloc = getIt.get<TasksBloc>();
+  TaskCategory _selectedCategory = TaskCategory.home;
 
   @override
   void initState() {
     bloc.add(const TasksEvent.fetchAllTasksFromDb());
-
     super.initState();
   }
 
@@ -33,6 +34,38 @@ class _TasksPageState extends State<TasksPage> {
     _titleController.dispose();
     _descriptionController.dispose();
     super.dispose();
+  }
+
+  void _showDeleteDialog(
+    BuildContext context,
+    String title,
+    String message,
+    String id,
+  ) {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: const Text('Delete'),
+              onPressed: () {
+                bloc.add(TasksEvent.deleteTask(id));
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _showErrorDialog(
@@ -69,14 +102,14 @@ class _TasksPageState extends State<TasksPage> {
             children: [
               const SizedBox(height: 8),
               CupertinoTextField(
-                placeholder: 'Enter title',
+                placeholder: 'Title',
                 onChanged: (value) {
                   _titleController.text = value;
                 },
               ),
               const SizedBox(height: 8),
               CupertinoTextField(
-                placeholder: 'Enter description',
+                placeholder: 'Description',
                 onChanged: (value) {
                   _descriptionController.text = value;
                 },
@@ -85,6 +118,9 @@ class _TasksPageState extends State<TasksPage> {
               CupertinoPicker(
                 itemExtent: 32,
                 onSelectedItemChanged: (index) {
+                  setState(() {
+                    _selectedCategory = TaskCategory.values[index];
+                  });
                   _selectedCategory = TaskCategory.values[index];
                 },
                 children: TaskCategory.values
@@ -104,8 +140,8 @@ class _TasksPageState extends State<TasksPage> {
                     TasksEvent.insertTask(
                       TaskEntity(
                         id: '',
-                        title: _titleController.text,
-                        description: _descriptionController.text,
+                        title: _titleController.text.toString(),
+                        description: _descriptionController.text.toString(),
                         category: _selectedCategory,
                         status: Status.inProgress,
                       ),
@@ -129,64 +165,101 @@ class _TasksPageState extends State<TasksPage> {
       appBar: AppBar(
         title: const Text(AppStrings.title),
         actions: [
-          IconButton(
-            onPressed: () => _showCreateTaskDialog(context, 'Crate task'),
-            icon: const Icon(Icons.add_circle_outline_sharp),
+          CreateTaskButton(
+            onTap: () => _showCreateTaskDialog(context, 'Crate task'),
           ),
         ],
       ),
-      body: BlocConsumer<TasksBloc, TasksState>(
-        listener: (context, state) {
-          state.failure != null
-              ? _showErrorDialog(
-                  context,
-                  state.failure!.name,
-                  state.failure!.description ?? '',
-                )
-              : const SizedBox.shrink();
-        },
-        buildWhen: (previous, current) => previous != current,
-        builder: (context, state) {
-          if (state.taskListenable != null) {
-            return ValueListenableBuilder<List<TaskEntity>>(
-              valueListenable: state.taskListenable!,
-              builder: (context, tasks, child) {
-                if (state.failure != null) {
-                  Center(
-                    child: Text(
-                      "${state.failure?.name}\n${state.failure?.description}",
-                    ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CategoryButton(
+                  category: TaskCategory.home,
+                  selectedCategory: _selectedCategory,
+                  onTap: () {
+                    setState(() {
+                      _selectedCategory = TaskCategory.home;
+                    });
+                  },
+                ),
+                CategoryButton(
+                  category: TaskCategory.work,
+                  selectedCategory: _selectedCategory,
+                  onTap: () {
+                    setState(() {
+                      _selectedCategory = TaskCategory.work;
+                    });
+                  },
+                ),
+                CategoryButton(
+                  category: TaskCategory.study,
+                  selectedCategory: _selectedCategory,
+                  onTap: () {
+                    setState(() {
+                      _selectedCategory = TaskCategory.study;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            BlocConsumer<TasksBloc, TasksState>(
+              listener: (context, state) {
+                state.failure != null
+                    ? _showErrorDialog(
+                        context,
+                        state.failure!.name,
+                        state.failure!.description ?? '',
+                      )
+                    : const SizedBox.shrink();
+              },
+              buildWhen: (previous, current) => previous != current,
+              builder: (context, state) {
+                if (state.taskListenable != null) {
+                  return ValueListenableBuilder<List<TaskEntity>>(
+                    valueListenable: state.taskListenable!,
+                    builder: (context, tasks, child) {
+                      if (state.failure != null) {
+                        Center(
+                          child: Text(
+                            "${state.failure?.name}\n${state.failure?.description}",
+                          ),
+                        );
+                      }
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: tasks.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: TaskItem(
+                              task: tasks[index],
+                              onDelete: () {
+                                _showDeleteDialog(context, 'Are you sure?', '',
+                                    tasks[index].id!);
+                              },
+                              onSetStatus: () {
+                                //show set status dialog
+                              },
+                              onUpdate: () {
+                                // show update dialog
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
                   );
                 }
-                return ListView.builder(
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        left: 24.0,
-                        right: 24.0,
-                        bottom: 8.0,
-                      ),
-                      child: TaskItem(
-                        task: tasks[index],
-                        onDelete: () {
-                          bloc.add(TasksEvent.deleteTask(tasks[index].id!));
-                        },
-                        onSetStatus: () {
-                          //show set status dialog
-                        },
-                        onUpdate: () {
-                          // show update dialog
-                        },
-                      ),
-                    );
-                  },
-                );
+                return const SizedBox.shrink();
               },
-            );
-          }
-          return const SizedBox.shrink();
-        },
+            ),
+          ],
+        ),
       ),
     );
   }

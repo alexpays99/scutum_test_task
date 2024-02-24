@@ -21,13 +21,26 @@ class TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: MediaQuery.sizeOf(context).width * 0.15,
+      height: MediaQuery.sizeOf(context).width * 0.2,
       decoration: const BoxDecoration(
         color: AppColors.taskItem,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: ListTile(
-        title: Text(task.title ?? ''),
+        title: Text(
+          task.title ?? '',
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        subtitle: Text(
+          task.category?.stringValue ?? '',
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         trailing: PopupMenuButton<String>(
           onSelected: (String value) {
             if (value == 'delete') {
