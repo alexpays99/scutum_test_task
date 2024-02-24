@@ -22,6 +22,10 @@ mixin _$TasksEvent {
     required TResult Function(TaskEntity task) insertTask,
     required TResult Function(String id, TaskEntity task) updateTask,
     required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +34,10 @@ mixin _$TasksEvent {
     TResult? Function(TaskEntity task)? insertTask,
     TResult? Function(String id, TaskEntity task)? updateTask,
     TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +46,10 @@ mixin _$TasksEvent {
     TResult Function(TaskEntity task)? insertTask,
     TResult Function(String id, TaskEntity task)? updateTask,
     TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +59,10 @@ mixin _$TasksEvent {
     required TResult Function(_InsertTask value) insertTask,
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +71,10 @@ mixin _$TasksEvent {
     TResult? Function(_InsertTask value)? insertTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +83,10 @@ mixin _$TasksEvent {
     TResult Function(_InsertTask value)? insertTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -138,6 +162,10 @@ class _$FetchAllTasksFromDbImpl
     required TResult Function(TaskEntity task) insertTask,
     required TResult Function(String id, TaskEntity task) updateTask,
     required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
   }) {
     return fetchAllTasksFromDb();
   }
@@ -149,6 +177,10 @@ class _$FetchAllTasksFromDbImpl
     TResult? Function(TaskEntity task)? insertTask,
     TResult? Function(String id, TaskEntity task)? updateTask,
     TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
   }) {
     return fetchAllTasksFromDb?.call();
   }
@@ -160,6 +192,10 @@ class _$FetchAllTasksFromDbImpl
     TResult Function(TaskEntity task)? insertTask,
     TResult Function(String id, TaskEntity task)? updateTask,
     TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (fetchAllTasksFromDb != null) {
@@ -175,6 +211,10 @@ class _$FetchAllTasksFromDbImpl
     required TResult Function(_InsertTask value) insertTask,
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return fetchAllTasksFromDb(this);
   }
@@ -186,6 +226,10 @@ class _$FetchAllTasksFromDbImpl
     TResult? Function(_InsertTask value)? insertTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return fetchAllTasksFromDb?.call(this);
   }
@@ -197,6 +241,10 @@ class _$FetchAllTasksFromDbImpl
     TResult Function(_InsertTask value)? insertTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (fetchAllTasksFromDb != null) {
@@ -286,6 +334,10 @@ class _$InsertTaskImpl with DiagnosticableTreeMixin implements _InsertTask {
     required TResult Function(TaskEntity task) insertTask,
     required TResult Function(String id, TaskEntity task) updateTask,
     required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
   }) {
     return insertTask(task);
   }
@@ -297,6 +349,10 @@ class _$InsertTaskImpl with DiagnosticableTreeMixin implements _InsertTask {
     TResult? Function(TaskEntity task)? insertTask,
     TResult? Function(String id, TaskEntity task)? updateTask,
     TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
   }) {
     return insertTask?.call(task);
   }
@@ -308,6 +364,10 @@ class _$InsertTaskImpl with DiagnosticableTreeMixin implements _InsertTask {
     TResult Function(TaskEntity task)? insertTask,
     TResult Function(String id, TaskEntity task)? updateTask,
     TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (insertTask != null) {
@@ -323,6 +383,10 @@ class _$InsertTaskImpl with DiagnosticableTreeMixin implements _InsertTask {
     required TResult Function(_InsertTask value) insertTask,
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return insertTask(this);
   }
@@ -334,6 +398,10 @@ class _$InsertTaskImpl with DiagnosticableTreeMixin implements _InsertTask {
     TResult? Function(_InsertTask value)? insertTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return insertTask?.call(this);
   }
@@ -345,6 +413,10 @@ class _$InsertTaskImpl with DiagnosticableTreeMixin implements _InsertTask {
     TResult Function(_InsertTask value)? insertTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (insertTask != null) {
@@ -448,6 +520,10 @@ class _$UpdateTaskImpl with DiagnosticableTreeMixin implements _UpdateTask {
     required TResult Function(TaskEntity task) insertTask,
     required TResult Function(String id, TaskEntity task) updateTask,
     required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
   }) {
     return updateTask(id, task);
   }
@@ -459,6 +535,10 @@ class _$UpdateTaskImpl with DiagnosticableTreeMixin implements _UpdateTask {
     TResult? Function(TaskEntity task)? insertTask,
     TResult? Function(String id, TaskEntity task)? updateTask,
     TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
   }) {
     return updateTask?.call(id, task);
   }
@@ -470,6 +550,10 @@ class _$UpdateTaskImpl with DiagnosticableTreeMixin implements _UpdateTask {
     TResult Function(TaskEntity task)? insertTask,
     TResult Function(String id, TaskEntity task)? updateTask,
     TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -485,6 +569,10 @@ class _$UpdateTaskImpl with DiagnosticableTreeMixin implements _UpdateTask {
     required TResult Function(_InsertTask value) insertTask,
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return updateTask(this);
   }
@@ -496,6 +584,10 @@ class _$UpdateTaskImpl with DiagnosticableTreeMixin implements _UpdateTask {
     TResult? Function(_InsertTask value)? insertTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return updateTask?.call(this);
   }
@@ -507,6 +599,10 @@ class _$UpdateTaskImpl with DiagnosticableTreeMixin implements _UpdateTask {
     TResult Function(_InsertTask value)? insertTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -603,6 +699,10 @@ class _$DeleteTaskImpl with DiagnosticableTreeMixin implements _DeleteTask {
     required TResult Function(TaskEntity task) insertTask,
     required TResult Function(String id, TaskEntity task) updateTask,
     required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
   }) {
     return deleteTask(id);
   }
@@ -614,6 +714,10 @@ class _$DeleteTaskImpl with DiagnosticableTreeMixin implements _DeleteTask {
     TResult? Function(TaskEntity task)? insertTask,
     TResult? Function(String id, TaskEntity task)? updateTask,
     TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
   }) {
     return deleteTask?.call(id);
   }
@@ -625,6 +729,10 @@ class _$DeleteTaskImpl with DiagnosticableTreeMixin implements _DeleteTask {
     TResult Function(TaskEntity task)? insertTask,
     TResult Function(String id, TaskEntity task)? updateTask,
     TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -640,6 +748,10 @@ class _$DeleteTaskImpl with DiagnosticableTreeMixin implements _DeleteTask {
     required TResult Function(_InsertTask value) insertTask,
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
   }) {
     return deleteTask(this);
   }
@@ -651,6 +763,10 @@ class _$DeleteTaskImpl with DiagnosticableTreeMixin implements _DeleteTask {
     TResult? Function(_InsertTask value)? insertTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
   }) {
     return deleteTask?.call(this);
   }
@@ -662,6 +778,10 @@ class _$DeleteTaskImpl with DiagnosticableTreeMixin implements _DeleteTask {
     TResult Function(_InsertTask value)? insertTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -678,6 +798,690 @@ abstract class _DeleteTask implements TasksEvent {
   @JsonKey(ignore: true)
   _$$DeleteTaskImplCopyWith<_$DeleteTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InputTitleImplCopyWith<$Res> {
+  factory _$$InputTitleImplCopyWith(
+          _$InputTitleImpl value, $Res Function(_$InputTitleImpl) then) =
+      __$$InputTitleImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title});
+}
+
+/// @nodoc
+class __$$InputTitleImplCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$InputTitleImpl>
+    implements _$$InputTitleImplCopyWith<$Res> {
+  __$$InputTitleImplCopyWithImpl(
+      _$InputTitleImpl _value, $Res Function(_$InputTitleImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+  }) {
+    return _then(_$InputTitleImpl(
+      null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InputTitleImpl with DiagnosticableTreeMixin implements _InputTitle {
+  const _$InputTitleImpl(this.title);
+
+  @override
+  final String title;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TasksEvent.inputTitle(title: $title)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TasksEvent.inputTitle'))
+      ..add(DiagnosticsProperty('title', title));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InputTitleImpl &&
+            (identical(other.title, title) || other.title == title));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, title);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InputTitleImplCopyWith<_$InputTitleImpl> get copyWith =>
+      __$$InputTitleImplCopyWithImpl<_$InputTitleImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllTasksFromDb,
+    required TResult Function(TaskEntity task) insertTask,
+    required TResult Function(String id, TaskEntity task) updateTask,
+    required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
+  }) {
+    return inputTitle(title);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllTasksFromDb,
+    TResult? Function(TaskEntity task)? insertTask,
+    TResult? Function(String id, TaskEntity task)? updateTask,
+    TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
+  }) {
+    return inputTitle?.call(title);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllTasksFromDb,
+    TResult Function(TaskEntity task)? insertTask,
+    TResult Function(String id, TaskEntity task)? updateTask,
+    TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
+    required TResult orElse(),
+  }) {
+    if (inputTitle != null) {
+      return inputTitle(title);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchAllTasksFromDb value) fetchAllTasksFromDb,
+    required TResult Function(_InsertTask value) insertTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
+  }) {
+    return inputTitle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult? Function(_InsertTask value)? insertTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
+  }) {
+    return inputTitle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult Function(_InsertTask value)? insertTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
+    required TResult orElse(),
+  }) {
+    if (inputTitle != null) {
+      return inputTitle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InputTitle implements TasksEvent {
+  const factory _InputTitle(final String title) = _$InputTitleImpl;
+
+  String get title;
+  @JsonKey(ignore: true)
+  _$$InputTitleImplCopyWith<_$InputTitleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InputDescriptionImplCopyWith<$Res> {
+  factory _$$InputDescriptionImplCopyWith(_$InputDescriptionImpl value,
+          $Res Function(_$InputDescriptionImpl) then) =
+      __$$InputDescriptionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String description});
+}
+
+/// @nodoc
+class __$$InputDescriptionImplCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$InputDescriptionImpl>
+    implements _$$InputDescriptionImplCopyWith<$Res> {
+  __$$InputDescriptionImplCopyWithImpl(_$InputDescriptionImpl _value,
+      $Res Function(_$InputDescriptionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? description = null,
+  }) {
+    return _then(_$InputDescriptionImpl(
+      null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InputDescriptionImpl
+    with DiagnosticableTreeMixin
+    implements _InputDescription {
+  const _$InputDescriptionImpl(this.description);
+
+  @override
+  final String description;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TasksEvent.inputDescription(description: $description)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TasksEvent.inputDescription'))
+      ..add(DiagnosticsProperty('description', description));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InputDescriptionImpl &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InputDescriptionImplCopyWith<_$InputDescriptionImpl> get copyWith =>
+      __$$InputDescriptionImplCopyWithImpl<_$InputDescriptionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllTasksFromDb,
+    required TResult Function(TaskEntity task) insertTask,
+    required TResult Function(String id, TaskEntity task) updateTask,
+    required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
+  }) {
+    return inputDescription(description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllTasksFromDb,
+    TResult? Function(TaskEntity task)? insertTask,
+    TResult? Function(String id, TaskEntity task)? updateTask,
+    TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
+  }) {
+    return inputDescription?.call(description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllTasksFromDb,
+    TResult Function(TaskEntity task)? insertTask,
+    TResult Function(String id, TaskEntity task)? updateTask,
+    TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
+    required TResult orElse(),
+  }) {
+    if (inputDescription != null) {
+      return inputDescription(description);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchAllTasksFromDb value) fetchAllTasksFromDb,
+    required TResult Function(_InsertTask value) insertTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
+  }) {
+    return inputDescription(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult? Function(_InsertTask value)? insertTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
+  }) {
+    return inputDescription?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult Function(_InsertTask value)? insertTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
+    required TResult orElse(),
+  }) {
+    if (inputDescription != null) {
+      return inputDescription(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InputDescription implements TasksEvent {
+  const factory _InputDescription(final String description) =
+      _$InputDescriptionImpl;
+
+  String get description;
+  @JsonKey(ignore: true)
+  _$$InputDescriptionImplCopyWith<_$InputDescriptionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InputCategoryImplCopyWith<$Res> {
+  factory _$$InputCategoryImplCopyWith(
+          _$InputCategoryImpl value, $Res Function(_$InputCategoryImpl) then) =
+      __$$InputCategoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TaskCategory category});
+}
+
+/// @nodoc
+class __$$InputCategoryImplCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$InputCategoryImpl>
+    implements _$$InputCategoryImplCopyWith<$Res> {
+  __$$InputCategoryImplCopyWithImpl(
+      _$InputCategoryImpl _value, $Res Function(_$InputCategoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$InputCategoryImpl(
+      null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as TaskCategory,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InputCategoryImpl
+    with DiagnosticableTreeMixin
+    implements _InputCategory {
+  const _$InputCategoryImpl(this.category);
+
+  @override
+  final TaskCategory category;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TasksEvent.inputCategory(category: $category)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TasksEvent.inputCategory'))
+      ..add(DiagnosticsProperty('category', category));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InputCategoryImpl &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InputCategoryImplCopyWith<_$InputCategoryImpl> get copyWith =>
+      __$$InputCategoryImplCopyWithImpl<_$InputCategoryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllTasksFromDb,
+    required TResult Function(TaskEntity task) insertTask,
+    required TResult Function(String id, TaskEntity task) updateTask,
+    required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
+  }) {
+    return inputCategory(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllTasksFromDb,
+    TResult? Function(TaskEntity task)? insertTask,
+    TResult? Function(String id, TaskEntity task)? updateTask,
+    TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
+  }) {
+    return inputCategory?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllTasksFromDb,
+    TResult Function(TaskEntity task)? insertTask,
+    TResult Function(String id, TaskEntity task)? updateTask,
+    TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
+    required TResult orElse(),
+  }) {
+    if (inputCategory != null) {
+      return inputCategory(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchAllTasksFromDb value) fetchAllTasksFromDb,
+    required TResult Function(_InsertTask value) insertTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
+  }) {
+    return inputCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult? Function(_InsertTask value)? insertTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
+  }) {
+    return inputCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult Function(_InsertTask value)? insertTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
+    required TResult orElse(),
+  }) {
+    if (inputCategory != null) {
+      return inputCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InputCategory implements TasksEvent {
+  const factory _InputCategory(final TaskCategory category) =
+      _$InputCategoryImpl;
+
+  TaskCategory get category;
+  @JsonKey(ignore: true)
+  _$$InputCategoryImplCopyWith<_$InputCategoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetStateImplCopyWith<$Res> {
+  factory _$$ResetStateImplCopyWith(
+          _$ResetStateImpl value, $Res Function(_$ResetStateImpl) then) =
+      __$$ResetStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetStateImplCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$ResetStateImpl>
+    implements _$$ResetStateImplCopyWith<$Res> {
+  __$$ResetStateImplCopyWithImpl(
+      _$ResetStateImpl _value, $Res Function(_$ResetStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetStateImpl with DiagnosticableTreeMixin implements _ResetState {
+  const _$ResetStateImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TasksEvent.resetState()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'TasksEvent.resetState'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetStateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchAllTasksFromDb,
+    required TResult Function(TaskEntity task) insertTask,
+    required TResult Function(String id, TaskEntity task) updateTask,
+    required TResult Function(String id) deleteTask,
+    required TResult Function(String title) inputTitle,
+    required TResult Function(String description) inputDescription,
+    required TResult Function(TaskCategory category) inputCategory,
+    required TResult Function() resetState,
+  }) {
+    return resetState();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchAllTasksFromDb,
+    TResult? Function(TaskEntity task)? insertTask,
+    TResult? Function(String id, TaskEntity task)? updateTask,
+    TResult? Function(String id)? deleteTask,
+    TResult? Function(String title)? inputTitle,
+    TResult? Function(String description)? inputDescription,
+    TResult? Function(TaskCategory category)? inputCategory,
+    TResult? Function()? resetState,
+  }) {
+    return resetState?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchAllTasksFromDb,
+    TResult Function(TaskEntity task)? insertTask,
+    TResult Function(String id, TaskEntity task)? updateTask,
+    TResult Function(String id)? deleteTask,
+    TResult Function(String title)? inputTitle,
+    TResult Function(String description)? inputDescription,
+    TResult Function(TaskCategory category)? inputCategory,
+    TResult Function()? resetState,
+    required TResult orElse(),
+  }) {
+    if (resetState != null) {
+      return resetState();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchAllTasksFromDb value) fetchAllTasksFromDb,
+    required TResult Function(_InsertTask value) insertTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_InputTitle value) inputTitle,
+    required TResult Function(_InputDescription value) inputDescription,
+    required TResult Function(_InputCategory value) inputCategory,
+    required TResult Function(_ResetState value) resetState,
+  }) {
+    return resetState(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult? Function(_InsertTask value)? insertTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_InputTitle value)? inputTitle,
+    TResult? Function(_InputDescription value)? inputDescription,
+    TResult? Function(_InputCategory value)? inputCategory,
+    TResult? Function(_ResetState value)? resetState,
+  }) {
+    return resetState?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchAllTasksFromDb value)? fetchAllTasksFromDb,
+    TResult Function(_InsertTask value)? insertTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_InputTitle value)? inputTitle,
+    TResult Function(_InputDescription value)? inputDescription,
+    TResult Function(_InputCategory value)? inputCategory,
+    TResult Function(_ResetState value)? resetState,
+    required TResult orElse(),
+  }) {
+    if (resetState != null) {
+      return resetState(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetState implements TasksEvent {
+  const factory _ResetState() = _$ResetStateImpl;
 }
 
 /// @nodoc

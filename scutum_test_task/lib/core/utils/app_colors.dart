@@ -5,7 +5,7 @@ class AppColors {
 
   static const white = Colors.white;
   static const black = Colors.black;
-  static const taskItem = Color.fromARGB(189, 195, 126, 254);
+  static const taskItem = Color.fromARGB(63, 213, 191, 232);
 
   static const primaryColor = Color(0xFFEB6C42);
   static const primaryLightColor = Color(0xFFEAAE59);
@@ -29,6 +29,9 @@ class AppColors {
 
   static const splashStartColor = Color(0xFFE9AE58);
   static const splashEndColor = Color(0xFFD8693E);
+
+  static const inProcress = Color(0xFFEAAE59);
+  static const done = Color(0xFF4CD964);
 
   static const wipeEditBG = Color(0xFFf3AE45);
   static const addToMyListBG = Color(0xFFF68446);

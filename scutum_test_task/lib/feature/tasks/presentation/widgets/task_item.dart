@@ -7,12 +7,14 @@ class TaskItem extends StatelessWidget {
   const TaskItem({
     super.key,
     required this.task,
+    required this.status,
     required this.onDelete,
     required this.onSetStatus,
     required this.onUpdate,
   });
 
   final TaskEntity task;
+  final Status status;
   final void Function() onDelete;
   final void Function() onSetStatus;
   final void Function() onUpdate;
