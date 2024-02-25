@@ -13,5 +13,5 @@ get_it: Employed as a service locator.
 Clean Architecture: Followed for project organization and structure.
 
 # Getting Started
-`flutter pub run build_runner build --delete-conflicting-outputs`
+`flutter pub run build_runner build --delete-conflicting-outputs` \
 `flutter run --dart-define-from-file=.env/app_keys.json`
