@@ -3,7 +3,7 @@
 This project serves as a test assignment for a flutter developer position at a company. The assignment details can be found here.
 
 # Technical Stack
-Bloc/Cubit: Utilized for different features. \
+[Bloc/Cubit]: Utilized for different features. \
 hive: Used for local data storage. \
 dartz: Employed for more convenient error handling. \
 dio: Used for networking purposes. \
