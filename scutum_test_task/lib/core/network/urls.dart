@@ -1,17 +1,17 @@
 class Urls {
-  Urls._();
+  const Urls._();
 
-  static String baseUrl = const String.fromEnvironment('BASE_URL').toString();
+  static const String baseUrl = "https://api.openweathermap.org";
 
-  static String baseEndpoint =
-      const String.fromEnvironment('BASE_ENDPOINT').toString();
+  static const String baseEndpoint = "data/3.0/onecall";
 
-  static String lattitude = const String.fromEnvironment('LAT').toString();
+  static const String lattitude = "50.450001";
 
-  static String longitude = const String.fromEnvironment('LON').toString();
+  static const String longitude = "30.523333";
 
-  static String appId = const String.fromEnvironment('APP_ID').toString();
+  static const String appId =
+      "add4ce5f261e44a46f894c6f80d89fd5"; //String.fromEnvironment('APP_ID');
 
-  static String requrestUrl =
-      '$baseUrl$baseEndpoint?lat=$lattitude&lon=$longitude&appid=$appId';
+  static const String requrestUrl =
+      "$baseUrl/$baseEndpoint?lat=$lattitude&lon=$longitude&units=metric&appid=$appId";
 }

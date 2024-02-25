@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:scutum_test_task/feature/weather/data/models/current_weather/current.dart';
 
 import '../../../../core/domain/entities/failure.dart';
+import '../../../../core/network/urls.dart';
 
 class ApiService {
   ApiService({required this.dio});
@@ -10,14 +11,11 @@ class ApiService {
   final Dio dio;
 
   Future<Either<Failure, String?>> getCurrentTimezone() async {
-    final response = await dio.get(
-        'https://api.openweathermap.org/data/3.0/onecall?lat=50.450001&lon=30.523333&appid=add4ce5f261e44a46f894c6f80d89fd5');
-
+    final response = await dio.get(Urls.requrestUrl.toString());
     if (response.statusCode == 200) {
       final timezone = response.data["timezone"] as String;
       return right(timezone);
     }
-
     return left(
       const Failure(
         name: 'REMOTE FAILURE:',
@@ -27,9 +25,8 @@ class ApiService {
   }
 
   Future<Either<Failure, Current>> getCurrentWeather() async {
-    //Urls.requrestUrl
-    final response = await dio.get(
-        'https://api.openweathermap.org/data/3.0/onecall?lat=50.450001&lon=30.523333&units=metric&appid=add4ce5f261e44a46f894c6f80d89fd5');
+    Urls.requrestUrl.toString();
+    final response = await dio.get(Urls.requrestUrl.toString());
 
     if (response.statusCode == 200) {
       final curretnWeather =

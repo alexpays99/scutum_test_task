@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../domain/entities/current_weather/weather.dart';
@@ -42,7 +43,7 @@ class WeatherWidget extends StatelessWidget {
               Text(
                 city,
                 style: const TextStyle(
-                  fontSize: 25,
+                  fontSize: 35,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -50,7 +51,7 @@ class WeatherWidget extends StatelessWidget {
               Text(currentTime ?? ''),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
           Text(
             "Temperature (⁰C): ${temperature ?? 0} \n Feels (⁰C): ${feels ?? 0}\n Pressure (hPa): ${pressure ?? 0} \n Cloudiness (%): ${cloudiness ?? 0} \n Visibility (km): ${visibility ?? 0}",
             style: const TextStyle(
@@ -59,7 +60,7 @@ class WeatherWidget extends StatelessWidget {
               color: AppColors.blue,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
           const Divider(),
           const SizedBox(height: 16),
           Center(
@@ -74,7 +75,7 @@ class WeatherWidget extends StatelessWidget {
           ),
           Center(
             child: Text(
-              weather?.main ?? "",
+              weather?.description ?? "",
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w300,
