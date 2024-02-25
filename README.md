@@ -1,6 +1,6 @@
 # Project Overview
 
-This project serves as a test assignment for a flutter developer position at a company. The assignment details can be found here.
+This project serves as a test assignment for a flutter developer position at a company.
 
 # Technical Stack
 - bloc/cubit: Utilized for different features. 
