@@ -36,7 +36,7 @@ class ApiService {
 
     return left(
       const Failure(
-        name: 'REMOTE FAILURE:',
+        name: 'REMOTE FAILUREE:',
         description: 'Unable to get current weather!',
       ),
     );
