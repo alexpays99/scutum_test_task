@@ -14,7 +14,6 @@ class WeatherCubit extends Cubit<WeatherState> {
   WeatherCubit({
     required this.getCurrentTimezoneUseCase,
     required this.getCurrentWeatherUseCase,
-    // required this.getWeatherIconUseCase,
   }) : super(
           WeatherState(
             currentWeatherStateModel: CurrentWeatherStateModel(),
@@ -23,13 +22,11 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   final GetCurrentTimezoneUseCase getCurrentTimezoneUseCase;
   final GetCurrentWeatherUseCase getCurrentWeatherUseCase;
-  // final GetWeatherIconUseCase getWeatherIconUseCase;
 
   Future<void> getCurrentTimezone() async {
     emit(
       state.copyWith(
         currentWeatherStateModel: CurrentWeatherStateModel(
-          value: null,
           currentState: CurrentWeatherState.loading,
         ),
       ),
@@ -62,7 +59,6 @@ class WeatherCubit extends Cubit<WeatherState> {
     emit(
       state.copyWith(
         currentWeatherStateModel: CurrentWeatherStateModel(
-          value: null,
           currentState: CurrentWeatherState.loading,
         ),
       ),

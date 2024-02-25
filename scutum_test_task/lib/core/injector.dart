@@ -20,7 +20,6 @@ import '../feature/tasks/data/repository/task_repository_impl.dart';
 import '../feature/tasks/domain/usecases/update_task.dart';
 import '../feature/weather/data/datasource/remote_datasource.dart';
 import '../feature/weather/data/repository/weather_repository_impl.dart';
-import '../feature/weather/domain/usecases/get_weather_icon.dart';
 import '../feature/weather/presentation/cubit/weather_cubit.dart';
 import '../navigation/go_rounter.dart';
 import 'database/hive_data.dart';
@@ -54,9 +53,6 @@ abstract class Injector {
     getIt.registerLazySingleton(
       () => GetCurrentWeatherUseCase(weatherRepository: getIt()),
     );
-    // getIt.registerLazySingleton(
-    //   () => GetWeatherIconUseCase(weatherRepository: getIt()),
-    // );
 
     // Repositories
     getIt.registerLazySingleton<TasksRepository>(
@@ -100,7 +96,6 @@ abstract class Injector {
       () => WeatherCubit(
         getCurrentTimezoneUseCase: getIt(),
         getCurrentWeatherUseCase: getIt(),
-        // getWeatherIconUseCase: getIt(),
       ),
     );
 

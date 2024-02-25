@@ -26,44 +26,49 @@ class WeatherPage extends StatelessWidget {
             ..getCurrentTimezone()
             ..getCurrentWeather();
         },
-        child: SingleChildScrollView(
-          physics: const ScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BlocBuilder<WeatherCubit, WeatherState>(
-                buildWhen: (previous, current) => previous != current,
-                builder: (context, state) {
-                  final stateModel = state.currentWeatherStateModel;
-                  final city = stateModel!.timezone ?? "Kyiv";
-                  final currentTime =
-                      stateModel.value?.dt?.toFormattedString('HH:mm:ss');
-                  final temperature =
-                      state.currentWeatherStateModel?.value?.temp;
-                  final feels =
-                      state.currentWeatherStateModel?.value?.feelsLike;
-                  final weather = state.currentWeatherStateModel?.weather;
-                  final pressure =
-                      state.currentWeatherStateModel?.value?.pressure;
-                  final cloudiness =
-                      state.currentWeatherStateModel?.value?.clouds;
-                  final visibility =
-                      state.currentWeatherStateModel?.value?.visibility;
-                  final image = weather?.icon != null
-                      ? 'https://openweathermap.org/img/wn/${weather?.icon}@2x.png'
-                      : 'https://openweathermap.org/img/wn/10d@2x.png';
-                  return WeatherWidget(
-                    city: city,
-                    currentTime: currentTime,
-                    temperature: temperature,
-                    feels: feels,
-                    pressure: pressure,
-                    cloudiness: cloudiness,
-                    visibility: visibility,
-                    image: image,
-                    weather: weather,
-                  );
-                },
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await Future.delayed(const Duration(seconds: 1));
+            await cubit.getCurrentTimezone();
+            await cubit.getCurrentWeather();
+          },
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverFillRemaining(
+                child: BlocBuilder<WeatherCubit, WeatherState>(
+                  buildWhen: (previous, current) => previous != current,
+                  builder: (context, state) {
+                    final stateModel = state.currentWeatherStateModel;
+                    final city = stateModel!.timezone ?? "Kyiv";
+                    final currentTime =
+                        stateModel.value?.dt?.toFormattedString('HH:mm:ss');
+                    final temperature =
+                        state.currentWeatherStateModel?.value?.temp;
+                    final feels =
+                        state.currentWeatherStateModel?.value?.feelsLike;
+                    final weather = state.currentWeatherStateModel?.weather;
+                    final pressure =
+                        state.currentWeatherStateModel?.value?.pressure;
+                    final cloudiness =
+                        state.currentWeatherStateModel?.value?.clouds;
+                    final visibility =
+                        state.currentWeatherStateModel?.value?.visibility;
+                    final image = weather?.icon != null
+                        ? 'https://openweathermap.org/img/wn/${weather?.icon}@2x.png'
+                        : 'https://openweathermap.org/img/wn/10d@2x.png';
+                    return WeatherWidget(
+                      city: city,
+                      currentTime: currentTime,
+                      temperature: temperature,
+                      feels: feels,
+                      pressure: pressure,
+                      cloudiness: cloudiness,
+                      visibility: visibility,
+                      image: image,
+                      weather: weather,
+                    );
+                  },
+                ),
               ),
             ],
           ),

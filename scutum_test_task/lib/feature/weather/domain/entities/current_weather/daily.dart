@@ -18,7 +18,7 @@ class DailyEntity {
   final double? windGust;
   final List<WeatherEntity>? weather;
   final int? clouds;
-  final int? pop;
+  final dynamic pop;
   final double? uvi;
   final double? rain;
 

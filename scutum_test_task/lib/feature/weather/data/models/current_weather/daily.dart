@@ -28,7 +28,7 @@ class Daily extends DailyEntity with _$Daily {
     @JsonKey(name: 'wind_gust') double? windGust,
     List<Weather>? weather,
     int? clouds,
-    int? pop,
+    dynamic pop,
     double? uvi,
     double? rain,
   }) = _Daily;
