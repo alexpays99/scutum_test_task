@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:scutum_test_task/core/utils/app_strings.dart';
 
+import '../../../../core/utils/ui_constants.dart';
 import '../../domain/entities/current_weather/weather.dart';
 
 class WeatherWidget extends StatelessWidget {
@@ -30,7 +32,8 @@ class WeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding:
+          const EdgeInsets.symmetric(horizontal: UIConstants.middlePadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,45 +43,45 @@ class WeatherWidget extends StatelessWidget {
               Text(
                 city,
                 style: const TextStyle(
-                  fontSize: 28,
+                  fontSize: UIConstants.largeFontSized,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 currentTime ?? '',
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: UIConstants.smallFontSized,
                   fontWeight: FontWeight.w300,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: UIConstants.smallPadding),
           Text(
-            'Temperature: ${temperature ?? 0}°C \n Feels Like: ${feels ?? 0}°C \n Pressure: ${pressure ?? 0} hPa \n Cloudiness: ${cloudiness ?? 0}% \n Visibility: ${visibility ?? 0} km',
+            '${AppStrings.temperature} ${temperature ?? UIConstants.defaultTemperature} ${AppStrings.celcium} \n ${AppStrings.feelsLike} ${feels ?? UIConstants.defaultTemperature} ${AppStrings.celcium} \n ${AppStrings.pressure} ${pressure ?? UIConstants.defaultPressure} ${AppStrings.hPa} \n ${AppStrings.cloudiness} ${cloudiness ?? UIConstants.defaultPercent} ${AppStrings.percent} \n ${AppStrings.visibility} ${visibility ?? UIConstants.defaultKm} ${AppStrings.kilometers}',
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: UIConstants.smallFontSized,
               fontWeight: FontWeight.w400,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: UIConstants.middlePadding),
           const Divider(),
-          const SizedBox(height: 10),
+          const SizedBox(height: UIConstants.smallPadding),
           Center(
             child: CachedNetworkImage(
               imageUrl: image,
               placeholder: (context, url) => const CircularProgressIndicator(),
               fit: BoxFit.contain,
-              height: 80,
-              width: 80,
+              height: UIConstants.defaultImageHeight,
+              width: UIConstants.defaultImageWidth,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: UIConstants.smallPadding),
           Center(
             child: Text(
               weather?.description ?? '',
               style: const TextStyle(
-                fontSize: 24,
+                fontSize: UIConstants.middlePadding,
                 fontWeight: FontWeight.w400,
               ),
             ),

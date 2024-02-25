@@ -5,6 +5,7 @@ import 'package:scutum_test_task/feature/weather/presentation/cubit/weather_cubi
 import 'package:scutum_test_task/core/extensions/int_extensions.dart';
 
 import '../../../core/network/urls.dart';
+import '../../../core/utils/app_strings.dart';
 import 'widgets/weather.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather'),
+        title: const Text(AppStrings.weatherTitle),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
