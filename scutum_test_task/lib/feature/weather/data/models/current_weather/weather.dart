@@ -16,4 +16,11 @@ class Weather extends WeatherEntity with _$Weather {
 
   factory Weather.fromJson(Map<String, dynamic> json) =>
       _$WeatherFromJson(json);
+
+  factory Weather.fromEntity(WeatherEntity entity) => Weather(
+        id: entity.id,
+        main: entity.main,
+        description: entity.description,
+        icon: entity.icon,
+      );
 }

@@ -30,6 +30,23 @@ class Current with _$Current {
   factory Current.fromJson(Map<String, dynamic> json) =>
       _$CurrentFromJson(json);
 
+  factory Current.fromEntity(CurrentEntity entity) => Current(
+        dt: entity.dt,
+        sunrise: entity.sunrise,
+        sunset: entity.sunset,
+        temp: entity.temp,
+        feelsLike: entity.feelsLike,
+        pressure: entity.pressure,
+        humidity: entity.humidity,
+        dewPoint: entity.dewPoint,
+        uvi: entity.uvi,
+        clouds: entity.clouds,
+        visibility: entity.visibility,
+        windSpeed: entity.windSpeed,
+        windDeg: entity.windDeg,
+        weather: entity.weather?.map((e) => Weather.fromEntity(e)).toList(),
+      );
+
   CurrentEntity get entity => CurrentEntity(
         dt: dt,
         sunrise: sunrise,

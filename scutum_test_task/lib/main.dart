@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/bloc/tasks_bloc.dart';
+import 'package:scutum_test_task/feature/weather/presentation/cubit/weather_cubit.dart';
 import 'core/injector.dart' as di;
 import 'navigation/go_rounter.dart';
 
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => di.getIt<TasksBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => di.getIt<WeatherCubit>(),
         ),
       ],
       child: MaterialApp.router(

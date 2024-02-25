@@ -6,8 +6,8 @@ import '../../domain/entities/current_weather/current.dart';
 import '../../domain/repository/weather_repository.dart';
 import '../datasource/remote_datasource.dart';
 
-class TasksRepositoryImpl implements WeatherRepository {
-  TasksRepositoryImpl(this._remoteDataSource);
+class WeatherRepositoryImpl implements WeatherRepository {
+  WeatherRepositoryImpl(this._remoteDataSource);
 
   final RemoteDataSource _remoteDataSource;
 

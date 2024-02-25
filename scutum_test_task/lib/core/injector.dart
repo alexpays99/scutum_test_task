@@ -9,11 +9,19 @@ import 'package:scutum_test_task/feature/tasks/domain/usecases/delete_task.dart'
 import 'package:scutum_test_task/feature/tasks/domain/usecases/fetch_all_tasks_from_db.dart';
 import 'package:scutum_test_task/feature/tasks/domain/usecases/insert_task.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/bloc/tasks_bloc.dart';
+import 'package:scutum_test_task/feature/weather/data/datasource/api_service.dart';
+import 'package:scutum_test_task/feature/weather/domain/repository/weather_repository.dart';
+import 'package:scutum_test_task/feature/weather/domain/usecases/get_current_timezone.dart';
+import 'package:scutum_test_task/feature/weather/domain/usecases/get_current_weather.dart';
 
-import '../feature/tasks/data/datasources/hive_service.dart';
-import '../feature/tasks/data/datasources/local_datasource.dart';
-import '../feature/tasks/data/repositories/task_repository_impl.dart';
+import '../feature/tasks/data/datasource/hive_service.dart';
+import '../feature/tasks/data/datasource/local_datasource.dart';
+import '../feature/tasks/data/repository/task_repository_impl.dart';
 import '../feature/tasks/domain/usecases/update_task.dart';
+import '../feature/weather/data/datasource/remote_datasource.dart';
+import '../feature/weather/data/repository/weather_repository_impl.dart';
+import '../feature/weather/domain/usecases/get_weather_icon.dart';
+import '../feature/weather/presentation/cubit/weather_cubit.dart';
 import '../navigation/go_rounter.dart';
 import 'database/hive_data.dart';
 
@@ -40,30 +48,45 @@ abstract class Injector {
     getIt.registerLazySingleton(
       () => DeleteTaskUseCase(tasksRepository: getIt()),
     );
+    getIt.registerLazySingleton(
+      () => GetCurrentTimezoneUseCase(weatherRepository: getIt()),
+    );
+    getIt.registerLazySingleton(
+      () => GetCurrentWeatherUseCase(weatherRepository: getIt()),
+    );
+    // getIt.registerLazySingleton(
+    //   () => GetWeatherIconUseCase(weatherRepository: getIt()),
+    // );
 
     // Repositories
     getIt.registerLazySingleton<TasksRepository>(
       () => TasksRepositoryImpl(getIt()),
     );
-    // getIt.registerLazySingleton<FavouriteAlbumRepository>(
-    //     () => FavouriteAlbumRepositoryImpl(getIt()));
+    getIt.registerLazySingleton<WeatherRepository>(
+      () => WeatherRepositoryImpl(
+        getIt(),
+      ),
+    );
 
     // Data sourses
     getIt.registerLazySingleton<LocalDataSource>(
       () => LocalDataSourceImpl(getIt()),
     );
-    // getIt.registerLazySingleton<RemoteDataSource>(
-    //     () => RemoteDataSourceImpl(getIt()));
+    getIt.registerLazySingleton<RemoteDataSource>(
+      () => RemoteDataSourceImpl(
+        getIt(),
+      ),
+    );
 
     // Services
     getIt.registerLazySingleton<HiveService>(
       () => HiveService(),
     );
-    // getIt.registerLazySingleton<HttpService>(
-    //   () => HttpService(
-    //     dio: getIt.get<Dio>(),
-    //   ),
-    // );
+    getIt.registerLazySingleton<ApiService>(
+      () => ApiService(
+        dio: getIt.get<Dio>(),
+      ),
+    );
 
     // Blocs and Cubits
     getIt.registerLazySingleton(
@@ -73,8 +96,13 @@ abstract class Injector {
           updateTaskUseCase: getIt(),
           deleteTaskUseCase: getIt()),
     );
-    // getIt.registerLazySingleton(() => TracksCubit(getIt()));
-    // getIt.registerLazySingleton(() => FavouriteTracksListCubit(getIt()));
+    getIt.registerLazySingleton(
+      () => WeatherCubit(
+        getCurrentTimezoneUseCase: getIt(),
+        getCurrentWeatherUseCase: getIt(),
+        // getWeatherIconUseCase: getIt(),
+      ),
+    );
 
     // Go Router
     getIt.registerFactory(() => GoRouterNavigation());

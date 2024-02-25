@@ -8,7 +8,6 @@ abstract class LocalDataSource {
 
   Future<void> insert(TaskModel task);
 
-  // Future<void> update(TaskModel task);
   Future<void> updateTaskById(String id, TaskModel updatedTask);
 
   Future<void> delete(String id);

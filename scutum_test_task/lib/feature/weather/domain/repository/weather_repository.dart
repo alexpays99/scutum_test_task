@@ -5,5 +5,6 @@ import '../entities/current_weather/current.dart';
 
 abstract class WeatherRepository {
   Future<Either<Failure, CurrentEntity>> getCurrentWeather();
+
   Future<Either<Failure, String?>> getCurrentTimezone();
 }

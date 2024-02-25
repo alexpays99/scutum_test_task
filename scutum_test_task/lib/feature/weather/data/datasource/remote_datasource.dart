@@ -6,6 +6,7 @@ import 'api_service.dart';
 
 abstract class RemoteDataSource {
   Future<Either<Failure, Current>> getCurrentWeather();
+
   Future<Either<Failure, String?>> getCurrentTimezone();
 }
 
