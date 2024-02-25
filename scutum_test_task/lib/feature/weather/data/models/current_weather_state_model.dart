@@ -13,7 +13,6 @@ class CurrentWeatherStateModel {
   CurrentWeatherStateModel({
     this.value,
     this.weather,
-    this.currentWeatherImage,
     this.timezone,
     this.currentState,
     this.failure,
@@ -21,7 +20,6 @@ class CurrentWeatherStateModel {
 
   CurrentEntity? value;
   WeatherEntity? weather;
-  String? currentWeatherImage;
   String? timezone;
   CurrentWeatherState? currentState = CurrentWeatherState.initial;
   Failure? failure;

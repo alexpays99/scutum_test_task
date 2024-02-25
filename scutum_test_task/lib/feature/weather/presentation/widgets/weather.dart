@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -20,9 +19,9 @@ class WeatherWidget extends StatelessWidget {
   });
 
   final String city;
-  final String currentTime;
-  final String temperature;
-  final String feels;
+  final String? currentTime;
+  final double? temperature;
+  final double? feels;
   final String image;
   final int? pressure;
   final int? cloudiness;
@@ -48,12 +47,12 @@ class WeatherWidget extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Text(currentTime),
+              Text(currentTime ?? ''),
             ],
           ),
           const SizedBox(height: 16),
           Text(
-            "Temperature (⁰C): $temperature \n Feels (⁰C): $feels\n Pressure (hPa): ${pressure ?? 0} \n Cloudiness (%): ${cloudiness ?? 0} \n Visibility (km): ${visibility ?? 0}",
+            "Temperature (⁰C): ${temperature ?? 0} \n Feels (⁰C): ${feels ?? 0}\n Pressure (hPa): ${pressure ?? 0} \n Cloudiness (%): ${cloudiness ?? 0} \n Visibility (km): ${visibility ?? 0}",
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,
@@ -66,7 +65,8 @@ class WeatherWidget extends StatelessWidget {
           Center(
             child: CachedNetworkImage(
               imageUrl: image,
-              placeholder: (context, url) => const CupertinoActivityIndicator(),
+              placeholder: (context, url) =>
+                  const CircularProgressIndicator.adaptive(),
               fit: BoxFit.contain,
               height: MediaQuery.sizeOf(context).width * 0.2,
               width: MediaQuery.sizeOf(context).width * 0.2,
@@ -74,7 +74,7 @@ class WeatherWidget extends StatelessWidget {
           ),
           Center(
             child: Text(
-              "${weather?.main}",
+              weather?.main ?? "",
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w300,

@@ -33,12 +33,9 @@ class WeatherPage extends StatelessWidget {
             final stateModel = state.currentWeatherStateModel;
             final city = stateModel!.timezone ?? "Kyiv";
             final currentTime =
-                stateModel.value?.dt?.toFormattedString('HH:mm:ss') ?? '';
-            final temperature =
-                state.currentWeatherStateModel?.value?.temp.toString() ?? '';
-            final feels =
-                state.currentWeatherStateModel?.value?.feelsLike.toString() ??
-                    '';
+                stateModel.value?.dt?.toFormattedString('HH:mm:ss');
+            final temperature = state.currentWeatherStateModel?.value?.temp;
+            final feels = state.currentWeatherStateModel?.value?.feelsLike;
             final weather = state.currentWeatherStateModel?.weather;
             final pressure = state.currentWeatherStateModel?.value?.pressure;
             final cloudiness = state.currentWeatherStateModel?.value?.clouds;
