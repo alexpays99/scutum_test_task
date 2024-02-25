@@ -2,75 +2,79 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scutum_test_task/feature/weather/presentation/cubit/weather_cubit.dart';
 
-import '../../../core/injector.dart';
 import 'package:scutum_test_task/core/extensions/int_extensions.dart';
 
+import '../../../core/network/urls.dart';
 import 'widgets/weather.dart';
 
-class WeatherPage extends StatelessWidget {
+class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = getIt.get<WeatherCubit>()
-      ..getCurrentTimezone()
-      ..getCurrentWeather();
+  State<WeatherPage> createState() => _WeatherPageState();
+}
 
+class _WeatherPageState extends State<WeatherPage> {
+  late WeatherCubit cubit = context.read<WeatherCubit>();
+
+  Future<void> _refreshData() async {
+    await cubit.getCurrentTimezone();
+    await cubit.getCurrentWeather();
+  }
+
+  @override
+  void initState() {
+    cubit = context.read<WeatherCubit>();
+    _refreshData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather Title'),
+        title: const Text('Weather'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await cubit.getCurrentTimezone();
-          await cubit.getCurrentWeather();
+          await _refreshData();
+          await Future.delayed(const Duration(seconds: 1));
         },
-        child: RefreshIndicator(
-          onRefresh: () async {
-            await Future.delayed(const Duration(seconds: 1));
-            await cubit.getCurrentTimezone();
-            await cubit.getCurrentWeather();
-          },
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverFillRemaining(
-                child: BlocBuilder<WeatherCubit, WeatherState>(
-                  buildWhen: (previous, current) => previous != current,
-                  builder: (context, state) {
-                    final stateModel = state.currentWeatherStateModel;
-                    final city = stateModel!.timezone ?? "Kyiv";
-                    final currentTime =
-                        stateModel.value?.dt?.toFormattedString('HH:mm:ss');
-                    final temperature =
-                        state.currentWeatherStateModel?.value?.temp;
-                    final feels =
-                        state.currentWeatherStateModel?.value?.feelsLike;
-                    final weather = state.currentWeatherStateModel?.weather;
-                    final pressure =
-                        state.currentWeatherStateModel?.value?.pressure;
-                    final cloudiness =
-                        state.currentWeatherStateModel?.value?.clouds;
-                    final visibility =
-                        state.currentWeatherStateModel?.value?.visibility;
-                    final image = weather?.icon != null
-                        ? 'https://openweathermap.org/img/wn/${weather?.icon}@2x.png'
-                        : 'https://openweathermap.org/img/wn/10d@2x.png';
-                    return WeatherWidget(
-                      city: city,
-                      currentTime: currentTime,
-                      temperature: temperature,
-                      feels: feels,
-                      pressure: pressure,
-                      cloudiness: cloudiness,
-                      visibility: visibility,
-                      image: image,
-                      weather: weather,
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            BlocBuilder<WeatherCubit, WeatherState>(
+              buildWhen: (previous, current) => previous != current,
+              builder: (context, state) {
+                final stateModel = state.currentWeatherStateModel;
+                final city = stateModel?.timezone ?? 'Kyiv';
+                final currentTime =
+                    stateModel?.value?.dt?.toFormattedString('HH:mm:ss');
+                final temperature = stateModel?.value?.temp;
+                final feels = stateModel?.value?.feelsLike;
+                final weather = stateModel?.weather;
+                final pressure = stateModel?.value?.pressure;
+                final cloudiness = stateModel?.value?.clouds;
+                final visibility = stateModel?.value?.visibility;
+                final iconUrl = weather != null
+                    ? Urls.weatherImage(weather.icon ?? '')
+                    : Urls.defaultWeatherImage;
+
+                return SliverFillRemaining(
+                  child: WeatherWidget(
+                    city: city,
+                    currentTime: currentTime,
+                    temperature: temperature,
+                    feels: feels,
+                    pressure: pressure,
+                    cloudiness: cloudiness,
+                    visibility: visibility,
+                    image: iconUrl,
+                    weather: weather,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

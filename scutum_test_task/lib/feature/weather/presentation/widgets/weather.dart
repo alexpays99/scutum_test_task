@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_colors.dart';
 import '../../domain/entities/current_weather/weather.dart';
 
 class WeatherWidget extends StatelessWidget {
@@ -31,54 +30,56 @@ class WeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.sizeOf(context).width * 0.2),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 city,
                 style: const TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const Spacer(),
-              Text(currentTime ?? ''),
+              Text(
+                currentTime ?? '',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
             ],
           ),
-          SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
+          const SizedBox(height: 10),
           Text(
-            "Temperature (⁰C): ${temperature ?? 0} \n Feels (⁰C): ${feels ?? 0}\n Pressure (hPa): ${pressure ?? 0} \n Cloudiness (%): ${cloudiness ?? 0} \n Visibility (km): ${visibility ?? 0}",
+            'Temperature: ${temperature ?? 0}°C \n Feels Like: ${feels ?? 0}°C \n Pressure: ${pressure ?? 0} hPa \n Cloudiness: ${cloudiness ?? 0}% \n Visibility: ${visibility ?? 0} km',
             style: const TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.w300,
-              color: AppColors.blue,
+              fontWeight: FontWeight.w400,
             ),
           ),
-          SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+          const SizedBox(height: 20),
           const Divider(),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           Center(
             child: CachedNetworkImage(
               imageUrl: image,
-              placeholder: (context, url) =>
-                  const CircularProgressIndicator.adaptive(),
+              placeholder: (context, url) => const CircularProgressIndicator(),
               fit: BoxFit.contain,
-              height: MediaQuery.sizeOf(context).width * 0.2,
-              width: MediaQuery.sizeOf(context).width * 0.2,
+              height: 80,
+              width: 80,
             ),
           ),
+          const SizedBox(height: 10),
           Center(
             child: Text(
-              weather?.description ?? "",
+              weather?.description ?? '',
               style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w300,
-                color: AppColors.blue,
+                fontSize: 24,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),

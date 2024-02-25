@@ -1,6 +1,12 @@
 class Urls {
   const Urls._();
 
+  static String weatherImage(String? icon) =>
+      'https://openweathermap.org/img/wn/$icon@2x.png';
+
+  static const String defaultWeatherImage =
+      'https://openweathermap.org/img/wn/10d@2x.png';
+
   static const String baseUrl = "https://api.openweathermap.org";
 
   static const String baseEndpoint = "data/3.0/onecall";
