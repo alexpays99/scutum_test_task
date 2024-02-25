@@ -22,9 +22,8 @@ class WeatherPage extends StatelessWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          cubit
-            ..getCurrentTimezone()
-            ..getCurrentWeather();
+          await cubit.getCurrentTimezone();
+          await cubit.getCurrentWeather();
         },
         child: RefreshIndicator(
           onRefresh: () async {
