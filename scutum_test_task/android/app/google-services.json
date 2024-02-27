@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "831846502146",
+    "project_id": "scutum-test-task",
+    "storage_bucket": "scutum-test-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831846502146:android:32d3685d4feec7c01bfc1b",
+        "android_client_info": {
+          "package_name": "com.example.scutum_test_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBymFys1vobP_IBJsNa-x_oB8YLwC7a_4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
