@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:scutum_test_task/core/utils/ui_constants.dart';
 
+import '../../../../core/utils/app_strings.dart';
 import '../../domain/entities/task_entity.dart';
 import '../bloc/tasks_bloc.dart';
 
@@ -14,24 +16,24 @@ class CreateTaskDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      title: const Text('Create Task'),
+      title: const Text(AppStrings.createTask),
       content: Column(
         children: [
-          const SizedBox(height: 8),
+          const SizedBox(height: UIConstants.smallPadding),
           CupertinoTextField(
-            placeholder: 'Title',
+            placeholder: AppStrings.title,
             onChanged: (value) {
               bloc.add(TasksEvent.inputTitle(value));
             },
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: UIConstants.smallPadding),
           CupertinoTextField(
-            placeholder: 'Description',
+            placeholder: AppStrings.description,
             onChanged: (value) {
               bloc.add(TasksEvent.inputDescription(value));
             },
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: UIConstants.smallPadding),
           CupertinoPicker(
             itemExtent: 40,
             onSelectedItemChanged: (index) {
@@ -45,7 +47,7 @@ class CreateTaskDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         CupertinoDialogAction(
-          child: const Text('Create'),
+          child: const Text(AppStrings.create),
           onPressed: () {
             if (bloc.title.isNotEmpty || bloc.description.isNotEmpty) {
               bloc.add(TasksEvent.insertTask(TaskEntity()));

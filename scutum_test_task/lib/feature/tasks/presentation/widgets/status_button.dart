@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scutum_test_task/core/utils/ui_constants.dart';
 
+import '../../../../core/utils/app_colors.dart';
 import '../../domain/entities/task_entity.dart';
 
 class StatusButton extends StatelessWidget {
@@ -22,17 +24,19 @@ class StatusButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: const EdgeInsets.symmetric(
+            horizontal: UIConstants.secondSmallPadding,
+            vertical: UIConstants.superSmallPadding),
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color.fromARGB(222, 75, 161, 231)
-              : const Color.fromARGB(32, 143, 25, 239),
-          borderRadius: BorderRadius.circular(16),
+              ? AppColors.categorySelectedColor
+              : AppColors.categoryUnselectedColor,
+          borderRadius: BorderRadius.circular(UIConstants.middleRadius),
         ),
         child: Text(
           statusName,
           style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
+            color: isSelected ? AppColors.white : AppColors.black,
           ),
         ),
       ),

@@ -7,6 +7,7 @@ import 'package:scutum_test_task/feature/tasks/presentation/widgets/status_butto
 import 'package:scutum_test_task/feature/tasks/presentation/widgets/task_item.dart';
 
 import '../../../core/utils/app_strings.dart';
+import '../../../core/utils/ui_constants.dart';
 import 'bloc/tasks_bloc.dart';
 import 'widgets/category_button.dart';
 import 'widgets/create_task_button.dart';
@@ -39,20 +40,24 @@ class _TasksPageState extends State<TasksPage> {
         title: const Text(AppStrings.tasksTitle),
         actions: [
           CreateTaskButton(
-            onTap: () => _showCreateTaskDialog(context, 'Crate task'),
+            onTap: () => _showCreateTaskDialog(
+              context,
+              AppStrings.createTask,
+            ),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+          padding:
+              const EdgeInsets.symmetric(horizontal: UIConstants.largePadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildCategoryRow(),
-              const SizedBox(height: 8),
+              const SizedBox(height: UIConstants.smallPadding),
               _buildStatusRow(),
-              const SizedBox(height: 24),
+              const SizedBox(height: UIConstants.largePadding),
               BlocConsumer<TasksBloc, TasksState>(
                 listener: (context, state) {
                   state.failure != null
@@ -76,7 +81,8 @@ class _TasksPageState extends State<TasksPage> {
                           itemBuilder: (context, index) {
                             final task = TaskModel.fromEntity(tasks[index]);
                             return Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
+                              padding: const EdgeInsets.only(
+                                  bottom: UIConstants.smallPadding),
                               child: TaskItem(
                                 status: task.status,
                                 task: tasks[index],
@@ -93,8 +99,11 @@ class _TasksPageState extends State<TasksPage> {
                                   });
                                 },
                                 onDelete: () {
-                                  _showDeleteDialog(context, 'Are you sure?',
-                                      '', tasks[index].id!);
+                                  _showDeleteDialog(
+                                      context,
+                                      AppStrings.confirmationText,
+                                      '',
+                                      tasks[index].id!);
                                 },
                               ),
                             );
@@ -148,7 +157,7 @@ class _TasksPageState extends State<TasksPage> {
 
   Widget _buildCategoryRow() {
     return _buildRow(
-      label: 'Category',
+      label: AppStrings.category,
       buttons: TaskCategory.values.map((category) {
         return CategoryButton(
           category: category,
@@ -161,7 +170,7 @@ class _TasksPageState extends State<TasksPage> {
 
   Widget _buildStatusRow() {
     return _buildRow(
-      label: 'Status',
+      label: AppStrings.status,
       buttons: Status.values.map((status) {
         return StatusButton(
           status: status,
@@ -179,7 +188,7 @@ class _TasksPageState extends State<TasksPage> {
         Text(
           label,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: UIConstants.smallFontSized,
             fontWeight: FontWeight.w300,
           ),
         ),
