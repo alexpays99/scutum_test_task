@@ -21,7 +21,7 @@ class ApiService {
         name: 'REMOTE FAILURE:',
         description: 'Unable to get current timezone!',
       ),
-    );
+    ); //
   }
 
   Future<Either<Failure, Current>> getCurrentWeather() async {
