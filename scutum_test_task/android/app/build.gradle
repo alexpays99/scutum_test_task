@@ -2,7 +2,6 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-    id "com.android.application"
     id "com.google.gms.google-services"
 }
 
@@ -51,6 +50,15 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("android.keystore")
+            storePassword "123123"
+            keyAlias "1"
+            keyPassword "123123"
+        }
     }
 
     buildTypes {
