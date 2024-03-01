@@ -23,9 +23,7 @@ workflows:
       - name: Open scutum_test_task folder if it exists
         script: |
           if [ -d "scutum_test_task" ]; then
-            cd scutum_test_task
-            pwd
-            ls
+            cd scutum_test_task && pwd && ls
           else
             pwd
             ls
