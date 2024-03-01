@@ -8,7 +8,7 @@ workflows:
         - firebase
       flutter: stable
       vars:
-        APP_ID: $APP_ID # API KEY OF OpenWeatherMap API
+        APP_ID: $APP_ID # API KEY OF OpenWeatherMap API 
         ANDROID_APP_ID: $ANDROID_APP_ID # Android App id
         FIREBASE_TOKEN: $FIREBASE_TOKEN # Firebase token
         FIREBASE_SERVICE_ACCOUNT: $FIREBASE_SERVICE_ACCOUNT # Fireabse service account json
