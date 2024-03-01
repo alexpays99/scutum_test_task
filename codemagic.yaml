@@ -16,8 +16,8 @@ workflows:
           include: true
           source: true
     scripts:
-      - name: Change to project directory
-        script: cd scutum_test_task
+      - name: Check current location
+        script: ls
       - name: Install dependencies
         script: |
           flutter pub get
