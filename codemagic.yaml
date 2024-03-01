@@ -54,7 +54,6 @@ workflows:
           cd scutum_test_task && pwd && ls && flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN --no-tree-shake-icons
       - name: Check if APK exist
         script: |
-          cd scutum_test_task/build/app/outputs/flutter-apk/
           if [ -f "scutum_test_task/build/app/outputs/flutter-apk/app-release.apk" ]; then
             ls
             echo "APK file exists."
