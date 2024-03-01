@@ -52,6 +52,14 @@ workflows:
       - name: Build APK
         script: |
           cd scutum_test_task && pwd && ls && flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN --no-tree-shake-icons
+      - name: Check if APK exist
+        script: |
+          if [ -f "scutum_test_task/build/app/outputs/flutter-apk/app-release.apk" ]; then
+            echo "APK file exists."
+          else
+            echo "APK file does not exist."
+            exit 1
+          fi
       #- name: Build AAB
         #script: |
           #cd scutum_test_task && pwd && ls && flutter build appbundle --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
