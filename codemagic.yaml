@@ -17,12 +17,14 @@ workflows:
           source: true
     scripts:
       - name: Check current location
+        script: pwd
+      - name: List contents of the current directory
         script: ls
       - name: Open scutum_test_task folder if it exists
         script: |
           if [ -d "scutum_test_task" ]; then
             cd scutum_test_task
-            echo "Now in scutum_test_task"
+            pwd
             ls
           else
             echo "scutum_test_task directory does not exist."
