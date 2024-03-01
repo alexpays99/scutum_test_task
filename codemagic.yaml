@@ -20,8 +20,6 @@ workflows:
           include: true
           source: true
     scripts:
-      - name: Set up local.properties
-        script: cd scutum_test_task/android && echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       - name: Check current location
         script: pwd
       - name: List contents of the current directory
@@ -50,7 +48,7 @@ workflows:
           fi
       - name: Run code generation
         script: |
-         cd scutum_test_task && pwd && ls && flutter pub run build_runner build --delete-conflicting-outputs
+         cd scutum_test_task && pwd && ls && flutter clean && flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
       - name: Build APK
         script: |
           cd scutum_test_task && pwd && ls && flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN --no-tree-shake-icons
