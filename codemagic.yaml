@@ -27,6 +27,8 @@ workflows:
             pwd
             ls
           else
+            pwd
+            ls
             echo "scutum_test_task directory does not exist."
           fi
       - name: Verify Flutter installation
