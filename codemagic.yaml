@@ -41,8 +41,7 @@ workflows:
           app_id: $APP_ID
           groups: 
             - android_testers
-            artifact_type: 'apk'
-            artifact_path: 'build/app/outputs/flutter-apk/app-release.apk'
+          artifact_type: 'apk'
           #groups: 
           #    - android_testers
           #    artifact_type: 'aab'
