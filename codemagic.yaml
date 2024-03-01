@@ -18,6 +18,15 @@ workflows:
     scripts:
       - name: Check current location
         script: ls
+      - name: Open scutum_test_task folder if it exists
+        script: |
+          if [ -d "scutum_test_task" ]; then
+            cd scutum_test_task
+            echo "Now in scutum_test_task"
+            ls
+          else
+            echo "scutum_test_task directory does not exist."
+          fi
       - name: Install dependencies
         script: |
           flutter pub get
