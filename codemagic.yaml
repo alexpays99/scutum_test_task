@@ -34,5 +34,5 @@ workflows:
     publishing:
       firebase_app_distribution:
         app_id: add4ce5f261e44a46f894c6f80d89fd5
-        groups: android_testers # or your target group
+        groups: android_testers
         service_credentials_json: 1//0cmawzRx75LrvCgYIARAAGAwSNwF-L9IrLIYxPvP1CMIJqw-BtXQzdYBopTVYLka27HCoRxwrf_Jwg_YDc-O7CgSnifdyxUdFVXM
