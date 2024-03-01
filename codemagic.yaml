@@ -55,8 +55,8 @@ workflows:
       - name: Check if APK exist
         script: |
           cd scutum_test_task/build/app/outputs/flutter-apk/
-          ls
           if [ -f "scutum_test_task/build/app/outputs/flutter-apk/app-release.apk" ]; then
+            ls
             echo "APK file exists."
           else
             echo "APK file does not exist."
