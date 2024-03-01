@@ -27,6 +27,8 @@ workflows:
           else
             echo "scutum_test_task directory does not exist."
           fi
+      - name: Verify Flutter installation
+        script: flutter --version
       - name: Install dependencies
         script: |
           flutter pub get
