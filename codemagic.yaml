@@ -21,8 +21,7 @@ workflows:
           source: true
     scripts:
       - name: Set up local.properties
-        script: | 
-        cd scutum_test_task/scutum_test_task/android && echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+        script: cd scutum_test_task/scutum_test_task/android && echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       - name: Check current location
         script: pwd
       - name: List contents of the current directory
