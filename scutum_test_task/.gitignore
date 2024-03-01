@@ -6,6 +6,7 @@
 
 # Files and directories created by pub
 .dart_tool/
+.env/
 .packages
 build/
 # If you're building an application, you may want to check-in your pubspec.lock
@@ -30,6 +31,9 @@ doc/api/
 ### Dart Patch ###
 # dotenv environment variables file
 .env
+
+#
+.scutum-test-task-firebase-adminsdk-eaiks-0c03f67b29.json
 
 ### Flutter ###
 # Flutter/Dart/Pub related
