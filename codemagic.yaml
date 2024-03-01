@@ -44,13 +44,13 @@ workflows:
           fi
       - name: Run code generation
         script: |
-          flutter pub run build_runner build --delete-conflicting-outputs
+         cd scutum_test_task && pwd && ls && flutter pub run build_runner build --delete-conflicting-outputs
       - name: Build APK
         script: |
-          flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
+          cd scutum_test_task && pwd && ls && flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
       - name: Build AAB
         script: |
-          flutter build appbundle --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
+          cd scutum_test_task && pwd && ls && flutter build appbundle --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
