@@ -4,8 +4,8 @@ workflows:
     environment:
       flutter: stable
       vars:
-        APP_ID: YWRkNGNlNWYyNjFlNDRhNDZmODk0YzZmODBkODlmZDU=
-        FIREBASE_TOKEN: MS8vMGNtYXd6Ung3NUxydkNnWUlBUkFBR0F3U053Ri1MOUlyTElZeFB2UDFDTUlKcXctQnRYUXpkWUJvcFRWWUxrYTI3SENvUnh3cmZfSndnX1lEYy1PN0NnU25pZmR5eFVkRlZYTQ==
+        APP_ID: $APP_ID
+        FIREBASE_TOKEN: $FIREBASE_TOKEN
     triggering:
       events:
         - push
@@ -35,5 +35,5 @@ workflows:
       firebase_app_distribution:
         app_id: $APP_ID
         groups: 
-          name: android_testers
-        service_credentials_json: 1//0cmawzRx75LrvCgYIARAAGAwSNwF-L9IrLIYxPvP1CMIJqw-BtXQzdYBopTVYLka27HCoRxwrf_Jwg_YDc-O7CgSnifdyxUdFVXM
+          - android_testers
+        service_credentials_json: $FIREBASE_SERVICE_ACCOUNT_KEY
