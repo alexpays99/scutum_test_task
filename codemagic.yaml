@@ -33,6 +33,7 @@ workflows:
         script: flutter --version
       - name: Install dependencies
         script: |
+          cd scutum_test_task && pwd && ls
           if [ -f "pubspec.yaml" ]; then
             flutter pub get
           else
