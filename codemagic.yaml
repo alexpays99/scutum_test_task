@@ -2,6 +2,8 @@ workflows:
   scutum-test-task-workflow:
     name: Scutum Test Task Workflow
     environment:
+      groups:
+        - firebase
       flutter: stable
       vars:
         APP_ID: $APP_ID
@@ -32,8 +34,17 @@ workflows:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
     publishing:
-      firebase_app_distribution:
-        app_id: $APP_ID
-        groups: 
-          - android_testers
-        service_credentials_json: $FIREBASE_SERVICE_ACCOUNT_KEY
+      firebase:
+        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT_KEY
+        #firebase_token: $FIREBASE_TOKEN
+        android:
+          app_id: $APP_ID
+          groups: 
+            - android_testers
+            artifact_type: 'apk'
+            artifact_path: 'build/app/outputs/flutter-apk/app-release.apk'
+          #groups: 
+          #    - android_testers
+          #    artifact_type: 'aab'
+          #    artifact_path: 'build/app/outputs/bundle/release/app-release.aab'
+        
