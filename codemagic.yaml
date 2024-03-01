@@ -33,6 +33,6 @@ workflows:
       - build/**/outputs/**/*.aab
     publishing:
       firebase_app_distribution:
-        app_id: $APP_ID
+        app_id: add4ce5f261e44a46f894c6f80d89fd5
         groups: android_testers # or your target group
-        service_credentials_json: MS8vMGNtYXd6Ung3NUxydkNnWUlBUkFBR0F3U053Ri1MOUlyTElZeFB2UDFDTUlKcXctQnRYUXpkWUJvcFRWWUxrYTI3SENvUnh3cmZfSndnX1lEYy1PN0NnU25pZmR5eFVkRlZYTQ==
+        service_credentials_json: 1//0cmawzRx75LrvCgYIARAAGAwSNwF-L9IrLIYxPvP1CMIJqw-BtXQzdYBopTVYLka27HCoRxwrf_Jwg_YDc-O7CgSnifdyxUdFVXM
