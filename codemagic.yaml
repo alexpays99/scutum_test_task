@@ -1,9 +1,38 @@
 workflows:
-    android-workflow-id:
-        name: Android Sample Workflow
-        # .......    
-        # .......
-        # .......  
-    ios-workflow-id:
-        name: iOS Sample Workflow
-        # ......
+  scutum-test-task-workflow:
+    name: Scutum Test Task Workflow
+    environment:
+      flutter: stable
+      vars:
+        APP_ID: YWRkNGNlNWYyNjFlNDRhNDZmODk0YzZmODBkODlmZDU=
+        FIREBASE_TOKEN: MS8vMGNtYXd6Ung3NUxydkNnWUlBUkFBR0F3U053Ri1MOUlyTElZeFB2UDFDTUlKcXctQnRYUXpkWUJvcFRWWUxrYTI3SENvUnh3cmZfSndnX1lEYy1PN0NnU25pZmR5eFVkRlZYTQ==
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+    scripts:
+      - name: Change to project directory
+        script: cd scutum_test_task
+      - name: Install dependencies
+        script: |
+          flutter pub get
+      - name: Run code generation
+        script: |
+          flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Build APK
+        script: |
+          flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
+      - name: Build AAB
+        script: |
+          flutter build appbundle --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/*.aab
+    publishing:
+      firebase_app_distribution:
+        app_id: $APP_ID
+        groups: android_testers # or your target group
+        service_credentials_json: MS8vMGNtYXd6Ung3NUxydkNnWUlBUkFBR0F3U053Ri1MOUlyTElZeFB2UDFDTUlKcXctQnRYUXpkWUJvcFRWWUxrYTI3SENvUnh3cmZfSndnX1lEYy1PN0NnU25pZmR5eFVkRlZYTQ==
