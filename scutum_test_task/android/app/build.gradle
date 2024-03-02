@@ -75,6 +75,12 @@ android {
     }
 
     buildTypes {
+        firebaseAppDistribution {
+                serviceCredentialsFile="/Users/alex/scutum_test_task/scutum_test_task/scutum-test-task-128721bebb21.json"
+                releaseNotesFile="/path/to/releasenotes.txt"
+                testers="mosisa.alex@gmail.com"
+                groups="android_testers"
+            }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
