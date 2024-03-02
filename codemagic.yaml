@@ -20,12 +20,12 @@ workflows:
           include: true
           source: true
     scripts:
-      - name: Verify Google credentials file exists
+      - name: Verify Google credentials path exists
         script: |
           if [ -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
-            echo "Google credentials file exists."
+            echo "Google credentials path exists."
           else
-            echo "Google credentials file does not exist."
+            echo "Google credentials path does not exist."
             exit 1
           fi
       - name: Check current location
