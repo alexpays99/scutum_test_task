@@ -53,6 +53,11 @@ android {
     }
 
     signingConfigs {
+        firebaseAppDistribution {
+            serviceCredentialsFile=System.getenv()["GOOGLE_APPLICATION_CREDENTIALS"]
+            // releaseNotesFile="/path/to/releasenotes.txt"
+            testers="mosisa.alex@gmail.com"
+        }
         release {
               if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                   storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
