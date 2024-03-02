@@ -3,7 +3,6 @@ plugins {
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
     id "com.google.gms.google-services"
-    id "com.google.firebase.appdistribution"
 }
 
 def localProperties = new Properties()
@@ -76,12 +75,6 @@ android {
     }
 
     buildTypes {
-        firebaseAppDistribution {
-                // serviceCredentialsFile=System.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-                serviceCredentialsFile="scutum_test_task/android/app/scutum-test-task-128721bebb21.json"
-                testers="mosisa.alex@gmail.com"
-                groups="android_testers"
-            }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
@@ -97,6 +90,4 @@ flutter {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.gms:google-services:4.3.15")
-    implementation("com.google.firebase:firebase-appdistribution-gradle:4.0.0")
 }
