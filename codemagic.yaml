@@ -20,6 +20,9 @@ workflows:
           include: true
           source: true
     scripts:
+      - name: Decode Google credentials
+        script: | 
+          echo $FIREBASE_SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
       - name: Check current location
         script: pwd
       - name: List contents of the current directory
@@ -61,16 +64,10 @@ workflows:
             echo "APK file does not exist."
             exit 1
           fi
-      #- name: Build AAB
-        #script: |
-          #cd scutum_test_task && pwd && ls && flutter build appbundle --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN
+      # Distribute android build to Firebase App Distribution via Gradle 
+      - name: Distribute app to firebase with gradle plugin
+        script: | 
+          cd scutum_test_task && pwd && ls && cd android && ./gradlew appDistributionUploadRelease
     artifacts:
       - scutum_test_task/build/**/outputs/**/*.apk
-    publishing:
-      firebase:
-          firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
-          android:
-            app_id: $ANDROID_APP_ID
-            groups: 
-              - android_testers
-            artifact_type: 'apk'
+    
