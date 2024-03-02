@@ -10,7 +10,6 @@ workflows:
       vars:
         APP_ID: $APP_ID # API KEY OF OpenWeatherMap API
         ANDROID_APP_ID: $ANDROID_APP_ID # Android App id
-        #FIREBASE_TOKEN: $FIREBASE_TOKEN # Firebase token
         FIREBASE_SERVICE_ACCOUNT: $FIREBASE_SERVICE_ACCOUNT # Fireabse service account json
     triggering:
       events:
@@ -51,7 +50,7 @@ workflows:
          cd scutum_test_task && pwd && ls && flutter clean && flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
       - name: Build APK
         script: |
-          cd scutum_test_task && pwd && ls && flutter build apk --release --dart-define=APP_ID=$APP_ID --dart-define=FIREBASE_TOKEN=$FIREBASE_TOKEN --no-tree-shake-icons
+          cd scutum_test_task && pwd && ls && flutter build apk --release --dart-define=APP_ID=$APP_ID --no-tree-shake-icons
       - name: Check if APK exist
         script: |
           if [ -f "scutum_test_task/build/app/outputs/flutter-apk/app-release.apk" ]; then
