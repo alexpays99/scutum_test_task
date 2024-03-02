@@ -10,7 +10,8 @@ workflows:
       vars:
         APP_ID: $APP_ID # API KEY OF OpenWeatherMap API
         ANDROID_APP_ID: $ANDROID_APP_ID # Android App id
-        GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS # Fireabse service account json
+        FIREBASE_SERVICE_ACCOUNT: $FIREBASE_SERVICE_ACCOUNT # Firebase service account json
+        GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS # Path to Fireabse service account json file
     triggering:
       events:
         - push
@@ -67,7 +68,7 @@ workflows:
       - scutum_test_task/build/**/outputs/**/*.apk
     publishing:
       firebase:
-          firebase_service_account: $GOOGLE_APPLICATION_CREDENTIALS
+          firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
           android:
             app_id: $ANDROID_APP_ID
             groups: 
