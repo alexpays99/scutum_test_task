@@ -76,6 +76,7 @@ android {
 
     buildTypes {
         firebaseAppDistribution {
+                // serviceCredentialsFile=System.getenv('GOOGLE_APPLICATION_CREDENTIALS')
                 serviceCredentialsFile="android/app/scutum-test-task-128721bebb21.json"
                 testers="mosisa.alex@gmail.com"
                 groups="android_testers"
