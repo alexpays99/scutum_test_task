@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "scutum-test-task",
+  "private_key_id": "4a2787f63c3c93f990117383dd2c704f6fadd107",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCQux4mTgqI7yRt\nIyQ2FVBS1dketgpReYZPDutbytU+Rn1NzAA/jUygaLl287UVNALtaj6OCj2Ot7Ha\nawqteZK4GX9SMiAFgcbCiQalrbOWf/P9y10K4Vz0ofFkyX05vfeCacaQbOAn+7oO\nhgP2/yuHp/HGGsx3WebztozG4l7n4hZZ3Af9yCEr/4MtrngLQJgP49E35Fxk4Wbt\nFc3edxtkBjlV4ST5VRDVpV6rc/94oUmdeAhPtq9QdE+rcQLfL6kb6GW6LOryzX2z\n+QN1hz38+eRoApK+HPKBX1l4HQCOi6fqjgD6HRs4O439Qw2iXr9lmcoSWO+KpgL+\nnGux3ZYpAgMBAAECggEADzvCtqFsNnGFUf9q5k5j//QGQFdEysKRwmx9lVHKFB3z\nPmcEd6v1rsSXENAh9TNeQ4L1RpoJVKY9EBJIM24iZUI5xnsEJ9A7DWrCyll4F5Us\nJ0BqcKS71fvdnpAeoB9Al/duMPFkvpCeSr0MWckN2d9xcTqM3tsVlf1W3/AfsSRQ\nU9Yfzg6kRJtrjJOvjSfZDVuv7Sm8tyY7ClfoGM3ZHJ3l+c1LVbfc5qapFlRGAWU0\nySIOJZWJIE0XWAtHWRP8AgU74H40GyYk/FSLHw/TjDU5fxjD4fUxItZbeZ2jhpGu\ncr47sX0r7KKU76Dtl98xiutdvsfikjGsc8BKZKo2AQKBgQDDAeGP5qrJ+AGGL+Hn\nGuO4SBf2rAgFp0/onxsYikVV/Ye5DDJOsEpBb1dXW9pqJcilVlJNMSEL7CIYGlFf\nrM1vu55Lkj+3Z//+OR1lAfsPMyP8NQujnyHEaJ4cLHSc60W7khxWgN5LzSyckR6B\nL71Gy8ZjlvIAi/VPG2YXXZipYQKBgQC9/6Jzx06KEx9PKG6q4uBRX47LJnuOATnT\nyjIjOpbLLDDEI9sIWWbAUCDC6dyrdGzJc6acemlyx+wY8b2cDtrfanyBHYg74R3N\nxOCJweS1uiVDjrI9eaS+BEmm/fpKZM48V/ku+XkZIVWx4Oceo+L1cTD4/t4DelbK\n/iDMiYo5yQKBgGjFevYAnaQzvkXlNf8f4FdjTJS4avr2oKU/zqQJriT8OU5/sgu7\nBbpQYuHJtPiw4jOKxF861SF9tfezNCMuSZYNfIfnxJn6o3xoHVXmkYfiFyRrL5yy\nY8cN2l0SuXiRo36aiuUjCcw6KQzZn0UTbCM8WpOpRs5qY9sjwl8tZ1chAoGAHE6N\nwXocNW4L6Bs6AbOzf+wgthuRpOKB3w/s0FrWRIbc7Rv6cg//wv8tIlz9R34dBxZ3\n6DBErZkjj8PUX//GlCqlSgdAWMt9ST7fxSZiEMEe9CW6YHZTGQxCfOKx+4txPoRM\n17bLV/cjcVD0nhgEpFSs2yv9n78GV0/tSwvi0CECgYARphX+UoHGEKd9RysrsNzg\nYqfDNApiRXTMtlRC/s1gRmFVmT8PL8tSQYbNQogNj+sQa7ONpk+eDw1c88I0+yiB\nNGoFoEbs87nbobucqvz5NTUa+mJt31FmGO3iQ4dhBuAGbnydDl4x8UW13Io/q8sc\nsOYwXS8V+6eYuMAFF5836A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account-file@scutum-test-task.iam.gserviceaccount.com",
+  "client_id": "114886464424276205623",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-file%40scutum-test-task.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
