@@ -70,7 +70,7 @@ workflows:
       firebase:
           firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
           android:
-            app_id: 1:831846502146:android:32d3685d4feec7c01bfc1b
+            app_id: $ANDROID_APP_ID
             groups: 
               - android_testers
             artifact_type: 'apk'
