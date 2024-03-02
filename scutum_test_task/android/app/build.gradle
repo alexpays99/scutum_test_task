@@ -58,7 +58,7 @@ android {
         release {
                 firebaseAppDistribution {
                     appId = "1:1234567890:android:abc123def456" // Replace with your actual Firebase App ID
-                    // serviceCredentialsFile=System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+                    serviceCredentialsFile=System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
                     testers="mosissa.alex@gmail.com"
                     groups= "android_testers"
                 }
