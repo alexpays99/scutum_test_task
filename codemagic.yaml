@@ -65,10 +65,14 @@ workflows:
       - name: Deploy apk to Firebase App Distribution
         script: |
           cd scutum_test_task/android && pwd && ls
-          echo "___Uploading APK___"
-          ./gradlew appDistributionUploadRelease
-          echo "___APK Uploaded___"
-          exit 1
+          if [ -f "/Users/builder/clone/scutum_test_task/android/scutum-test-task-d7a0c66ab5bc.json" ]; then
+            echo "___scutum-test-task-d7a0c66ab5bc.json file found___"
+            echo "___Uploading APK___"
+            ./gradlew appDistributionUploadRelease
+            echo "___APK Uploaded___"
+          else
+            echo "___scutum-test-task-d7a0c66ab5bc.json file NOT found___"
+            exit 1
           fi
     artifacts:
       - scutum_test_task/build/**/outputs/**/*.apk
