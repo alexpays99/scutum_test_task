@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/utils/app_colors.dart';
-import '../core/utils/ui_constants.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -31,54 +31,28 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget.navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: SnakeNavigationBar.color(
         currentIndex: widget.navigationShell.currentIndex,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        snakeViewColor: const Color.fromARGB(59, 96, 241, 214),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+        ),
         selectedItemColor: AppColors.selectedIcon,
         unselectedItemColor: AppColors.unselectedIcon,
-        selectedFontSize: UIConstants.selectedFontSize,
-        unselectedFontSize: UIConstants.unselectedFontSize,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        type: BottomNavigationBarType.shifting,
-        backgroundColor: AppColors.white,
+        backgroundColor: const Color.fromARGB(82, 164, 203, 34),
         onTap: _onTap,
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: const SizedBox(
-              width: UIConstants.tabContainerWidth,
-              height: UIConstants.tabContainerHeight,
-              child: Icon(Icons.home_outlined),
-            ),
-            activeIcon: Container(
-              width: UIConstants.tabContainerWidth,
-              height: UIConstants.tabContainerHeight,
-              decoration: const BoxDecoration(
-                color: AppColors.selectedBackgroundTab,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(UIConstants.tabContainerRadius),
-                ),
-              ),
-              child: const Icon(Icons.home),
-            ),
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
             label: "Tasks",
           ),
           BottomNavigationBarItem(
-            icon: const SizedBox(
-              width: UIConstants.tabContainerWidth,
-              height: UIConstants.tabContainerHeight,
-              child: Icon(Icons.favorite_outline),
-            ),
-            activeIcon: Container(
-              width: UIConstants.tabContainerWidth,
-              height: UIConstants.tabContainerHeight,
-              decoration: const BoxDecoration(
-                color: AppColors.selectedBackgroundTab,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(UIConstants.tabContainerRadius),
-                ),
-              ),
-              child: const Icon(Icons.favorite),
-            ),
+            icon: Icon(Icons.favorite_outline),
+            activeIcon: Icon(Icons.favorite),
             label: "Weather",
           ),
         ],
