@@ -57,8 +57,8 @@ android {
     signingConfigs {
         release {
                 firebaseAppDistribution {
-                    appId = "1:1234567890:android:abc123def456" // Replace with your actual Firebase App ID
-                    serviceCredentialsFile=System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+                    appId = "1:831846502146:android:32d3685d4feec7c01bfc1b" // Replace with your actual Firebase App ID
+                    serviceCredentialsFile="/Users/alex/scutum_test_task/scutum_test_task/scutum-test-task-d7a0c66ab5bc.json"//System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
                     testers="mosissa.alex@gmail.com"
                     groups= "android_testers"
                 }
