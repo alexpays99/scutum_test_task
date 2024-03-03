@@ -65,7 +65,6 @@ workflows:
       - name: Deploy apk to Firebase App Distribution
         script: |
           cd scutum_test_task/android && pwd && ls
-          ls
           echo "___Uploading APK___"
           ./gradlew appDistributionUploadRelease
           echo "___APK Uploaded___"
