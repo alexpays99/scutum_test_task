@@ -68,7 +68,7 @@ workflows:
       firebase:
           firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
           android:
-            app_id: "1:1234567890:android:abc123def456" #$ANDROID_APP_ID
+            app_id: "1:831846502146:android:32d3685d4feec7c01bfc1b" #$ANDROID_APP_ID
             groups: 
               - android_testers
             artifact_type: 'apk'
