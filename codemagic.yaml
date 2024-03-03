@@ -76,4 +76,3 @@ workflows:
           fi
     artifacts:
       - scutum_test_task/build/**/outputs/**/*.apk
-            artifact_type: 'apk'
