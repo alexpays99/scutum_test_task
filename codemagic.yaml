@@ -62,13 +62,14 @@ workflows:
             echo "APK file does not exist."
             exit 1
           fi
+      - name: Deploy apk to Firebase App Distribution
+        script: |
+          cd scutum_test_task/android && pwd && ls
+          ls
+          echo "___Uploading APK___"
+          ./gradlew appDistributionUploadRelease
+          echo "___APK Uploaded___"
+          exit 1
+        fi
     artifacts:
       - scutum_test_task/build/**/outputs/**/*.apk
-    publishing:
-      firebase:
-          firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
-          android:
-            app_id: "1:831846502146:android:32d3685d4feec7c01bfc1b" #$ANDROID_APP_ID
-            groups: 
-              - android_testers
-            artifact_type: 'apk'
