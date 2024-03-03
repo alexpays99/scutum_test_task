@@ -1,4 +1,5 @@
 workflows:
+  # Generate APK Workflow
   generate_apk_workflow:
     name: Generate APK Workflow
     environment:
@@ -71,3 +72,6 @@ workflows:
             groups: 
               - android_testers
             artifact_type: 'apk'
+            
+  # Generate AAB Workflow
+  generate_aab_workflow:
