@@ -65,7 +65,7 @@ workflows:
       - name: Deploy apk to Firebase App Distribution
         script: |
           cd scutum_test_task/android && pwd && ls
-          if [ -f "/Users/builder/clone/scutum_test_task/android/scutum-test-task-d7a0c66ab5bc.json" ]; then
+          if [ -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
             echo "___scutum-test-task-d7a0c66ab5bc.json file found___"
             echo "___Uploading APK___"
             ./gradlew appDistributionUploadRelease
@@ -76,3 +76,4 @@ workflows:
           fi
     artifacts:
       - scutum_test_task/build/**/outputs/**/*.apk
+            artifact_type: 'apk'
