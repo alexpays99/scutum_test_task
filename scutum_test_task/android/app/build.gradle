@@ -64,12 +64,13 @@ android {
                     testers="mosissa.alex@gmail.com"
                     groups= "android_testers"
                 }
+              // If CI enviroment, user remote machine keystore data, else elsee use local machine dat
               if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                   storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
                   storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
                   keyAlias System.getenv()["CM_KEY_ALIAS"]
                   keyPassword System.getenv()["CM_KEY_PASSWORD"]
-              } else {
+              } else { 
                     storeFile file("android.keystore")
                     storePassword "123123"
                     keyAlias "1"
