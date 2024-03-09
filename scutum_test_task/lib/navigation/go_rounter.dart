@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:scutum_test_task/core/presentation/pages/onboard.dart';
 import 'package:scutum_test_task/feature/tasks/presentation/tasks_page.dart';
 import 'package:scutum_test_task/navigation/bottom_navigation_bar.dart';
 
@@ -14,9 +15,15 @@ class GoRouterNavigation {
   GoRouter initGoRoute() {
     return GoRouter(
       debugLogDiagnostics: true,
-      initialLocation: RoutePaths.tasks,
+      // initialLocation: RoutePaths.tasks,
+      initialLocation: RoutePaths.onboarding,
       navigatorKey: _rootNavigatorKey,
       routes: <RouteBase>[
+        GoRoute(
+          path: RoutePaths.onboarding,
+          name: RoutePaths.onboarding,
+          builder: (context, state) => const Onboard(),
+        ),
         StatefulShellRoute.indexedStack(
           parentNavigatorKey: _rootNavigatorKey,
           builder: (context, state, navigationShell) {
