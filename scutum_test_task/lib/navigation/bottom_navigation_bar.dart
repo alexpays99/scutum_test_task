@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:go_router/go_router.dart';
-
-import '../core/utils/app_colors.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -18,6 +15,8 @@ class BottomNavigationBarWidget extends StatefulWidget {
 }
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
+  final _navigationIndexes = [0, 1];
+
   void _onTap(index) {
     setState(() {
       widget.navigationShell.goBranch(
@@ -30,32 +29,43 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.navigationShell,
-      bottomNavigationBar: SnakeNavigationBar.color(
-        currentIndex: widget.navigationShell.currentIndex,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        snakeViewColor: const Color.fromARGB(59, 96, 241, 214),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+      extendBody: true,
+      floatingActionButton: InkWell(
+        onTap: () {
+          // handle button press
+        },
+        child: Container(
+          width: 56,
+          height: 56,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.blue,
+          ),
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
         ),
-        selectedItemColor: AppColors.selectedIcon,
-        unselectedItemColor: AppColors.unselectedIcon,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        backgroundColor: const Color.fromARGB(82, 164, 203, 34),
-        onTap: _onTap,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: "Tasks",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
-            activeIcon: Icon(Icons.favorite),
-            label: "Weather",
-          ),
-        ],
+      ),
+      body: widget.navigationShell,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 5.0,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.home_outlined),
+              onPressed: () => _onTap(_navigationIndexes[0]),
+            ),
+            IconButton(
+              icon: const Icon(Icons.favorite_outline),
+              onPressed: () => _onTap(_navigationIndexes[1]),
+            ),
+          ],
+        ),
       ),
     );
   }
