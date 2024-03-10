@@ -37,13 +37,14 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         child: Container(
           width: 56,
           height: 56,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.blue,
+            color: Colors.amber[400],
           ),
           child: const Icon(
             Icons.add,
             color: Colors.white,
+            size: 40,
           ),
         ),
       ),
