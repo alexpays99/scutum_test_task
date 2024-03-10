@@ -1,5 +1,7 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:scutum_test_task/core/utils/app_colors.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -31,9 +33,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     return Scaffold(
       extendBody: true,
       floatingActionButton: InkWell(
-        onTap: () {
-          // handle button press
-        },
+        onTap: () {},
         child: Container(
           width: 56,
           height: 56,
@@ -49,24 +49,37 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       ),
       body: widget.navigationShell,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 5.0,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.home_outlined),
-              onPressed: () => _onTap(_navigationIndexes[0]),
-            ),
-            IconButton(
-              icon: const Icon(Icons.favorite_outline),
-              onPressed: () => _onTap(_navigationIndexes[1]),
-            ),
-          ],
-        ),
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+        backgroundColor: AppColors.categorySelectedColor,
+        icons: const [
+          Icons.home_outlined,
+          Icons.favorite_outline,
+        ],
+        activeIndex: widget.navigationShell.currentIndex,
+        gapLocation: GapLocation.center,
+        notchSmoothness: NotchSmoothness.softEdge,
+        onTap: (index) => _onTap(index),
+        leftCornerRadius: 32,
+        rightCornerRadius: 32,
       ),
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: const CircularNotchedRectangle(),
+      //   notchMargin: 5.0,
+      //   child: Row(
+      //     mainAxisSize: MainAxisSize.max,
+      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //     children: <Widget>[
+      //       IconButton(
+      //         icon: const Icon(Icons.home_outlined),
+      //         onPressed: () => _onTap(_navigationIndexes[0]),
+      //       ),
+      //       IconButton(
+      //         icon: const Icon(Icons.favorite_outline),
+      //         onPressed: () => _onTap(_navigationIndexes[1]),
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
